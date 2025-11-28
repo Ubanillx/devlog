@@ -1,0 +1,97 @@
+{
+  "site": {
+    "title": "UbanillxのDevLog",
+    "subtitle": "Personal Blog",
+    "description": "A developer's journey through code, design, and life.",
+    "keywords": [
+      "blog",
+      "developer",
+      "coding",
+      "tech"
+    ]
+  },
+  "author": {
+    "name": "Ubanillx",
+    "avatar": "",
+    "bio": "Full-stack developer passionate about building great products with vide coding.",
+    "email": "liulongxin21@gmail.com",
+    "location": "Anhui Huainan, China"
+  },
+  "social": {
+    "github": "https://github.com/Ubanillx",
+    "twitter": "https://x.com/LiuLongxin38647",
+    "linkedin": "",
+    "website": ""
+  },
+  "footer": {
+    "copyright": "© 2025 UbanillxのDevLog. All rights reserved. 赣ICP备2024029884号-1 |  皖公网安备34040002000482",
+    "showPoweredBy": true
+  },
+  "about": {
+    "headline": "I am a digital craftsman focused on building accessible, pixel-perfect, and performant web experiences. I obsess over component APIs and system architecture.",
+    "status": {
+      "availability": "Open for Projects",
+      "coffeeLevel": 68,
+      "preferredShell": "zsh / bash"
+    },
+    "techStack": [
+      {
+        "category": "Frontend",
+        "items": [
+          "React 19",
+          "TypeScript",
+          "Tailwind CSS",
+          "Next.js",
+          "Three.js"
+        ]
+      },
+      {
+        "category": "Backend",
+        "items": [
+          "Java",
+          "Spring Boot",
+          "PostgreSQL",
+          "Redis",
+          "LangChain4j"
+        ]
+      },
+      {
+        "category": "DevOps",
+        "items": [
+          "Docker",
+          "AWS (Lambda, ECS)",
+          "Aliyun",
+          "CI/CD"
+        ]
+      },
+      {
+        "category": "Tools",
+        "items": [
+          "cursor",
+          "Git",
+          "Claude Code",
+          "Linux"
+        ]
+      }
+    ],
+    "experience": [
+      {
+        "role": "Full Stack Engineer",
+        "company": "ShanXiChangZhi Gov.",
+        "period": "2025",
+        "desc": "Built ZZXXWLY.COM portal and WeChat mini-program using React, Taro, Spring Boot 3, and LangChain4j. Frontend: React + TypeScript + Vite with Ant Design, custom react-markdown editor, SEO optimization, and i18n support. Mini-program: Taro-based cross-platform solution with weather, maps, voice navigation, and image recognition. AI: Implemented RAG pipeline with custom Retriever, Prompt Templates, multi-turn conversations, and labeled knowledge base for improved accuracy. Deployment: OpenResty gateway, containerized middleware, SSL certificates, and optimized mini-program subpackaging."
+      },
+      {
+        "role": "Software Engineer",
+        "company": "Eqiyun Inc.",
+        "period": "2025",
+        "desc": "Deployed Feishu Aily platform applications for customer service across multiple service industry clients, configuring intelligent Q&A knowledge bases. Developed AI Bidding Assistant: a multi-agent system leveraging LLMs for bid evaluation, document generation, and review automation. Built Red Sifang Big Data Platform: integrated Feishu with internal ERP using Spring Boot 3 and Vue 3, implementing role-based access control and secure iframe embedding. Innovated with AI web scraping, multimodal OCR document parsing, and workflow automation using Playwright and Python-docx."
+      }
+    ],
+    "contact": {
+      "title": "Initiate Handshake",
+      "description": "Have a project in mind or just want to talk shop?",
+      "buttonText": "email_me.sh"
+    }
+  }
+}

@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>UbanillxのDevLog</title>
+    <link>http://localhost:3000</link>
+    <description>Technical blog feed</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 28 Nov 2025 02:35:55 GMT</lastBuildDate>
+    <item>
+      <title>Redis：不仅仅是缓存，更是你应用起飞的火箭推进器！🚀</title>
+      <link>http://localhost:3000/?post=f1560c00-b33e-4ffb-9d02-543b9d94257e</link>
+      <guid isPermaLink="false">f1560c00-b33e-4ffb-9d02-543b9d94257e</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Redis不仅是高速缓存，更是现代应用的全能加速器，从缓存、分布式锁到消息队列，它都能大显身手。通过生动的Java代码示例，探索Redis如何在多种场景下提升应用性能。</description>
+      <category>Redis</category>
+      <category>Java</category>
+      <category>Performance</category>
+      <category>Caching</category>
+      <category>Distributed Systems</category>
+    </item>
+    <item>
+      <title>大厂面试八股文：如何丝滑地给千万级大表添加一个字段？</title>
+      <link>http://localhost:3000/?post=e5e7b704-8e3c-4cfc-9e4f-f1cfb916c8d3</link>
+      <guid isPermaLink="false">e5e7b704-8e3c-4cfc-9e4f-f1cfb916c8d3</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>在千万级大表上添加列可能引发生产事故，本文探讨了从午夜操作到使用在线DDL工具等多种解决方案，旨在实现对业务影响最小的在线变更。</description>
+      <category>Database Management</category>
+      <category>Sql</category>
+      <category>Online Ddl</category>
+      <category>Database Architecture</category>
+      <category>High Availability</category>
+    </item>
+    <item>
+      <title>MybatisPlus 超详细教程：从入门到复杂查询（含示例代码）</title>
+      <link>http://localhost:3000/?post=59a675ff-fdc2-412d-a4e2-76df2c92aef1</link>
+      <guid isPermaLink="false">59a675ff-fdc2-412d-a4e2-76df2c92aef1</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>MybatisPlus 在简化开发和提高效率方面表现出色，本文将带你从环境搭建到复杂查询的实现，全面掌握这一强大的工具。</description>
+      <category>Java</category>
+      <category>MybatisPlus</category>
+      <category>Spring Boot</category>
+      <category>Data Persistence</category>
+      <category>Crud Operations</category>
+    </item>
+    <item>
+      <title>什么是索引？为什么需要它？</title>
+      <link>http://localhost:3000/?post=afb646f4-530a-4894-9907-07b14a6c8d3c</link>
+      <guid isPermaLink="false">afb646f4-530a-4894-9907-07b14a6c8d3c</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>索引如同图书馆的目录，能显著提升MySQL数据库查询效率，但需谨慎设计以平衡读写性能。</description>
+      <category>Mysql</category>
+      <category>Database Optimization</category>
+      <category>Indexing</category>
+      <category>Innodb</category>
+      <category>Sql Queries</category>
+    </item>
+    <item>
+      <title>代码的艺术：从 JDK 8 的函数式狂潮到 JDK 17 的现代优雅</title>
+      <link>http://localhost:3000/?post=28ef3681-95fd-4cfb-9303-1a2574fc461f</link>
+      <guid isPermaLink="false">28ef3681-95fd-4cfb-9303-1a2574fc461f</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>JDK 8到17引入了众多新特性，如Lambda表达式、模块化系统、Record类型等，极大提升了Java的开发效率和代码质量。</description>
+      <category>Java</category>
+      <category>Jdk8</category>
+      <category>StreamApi</category>
+      <category>LambdaExpressions</category>
+      <category>OptionalClass</category>
+    </item>
+    <item>
+      <title>用大白话聊聊 Redis 缓存“失灵”：击穿、穿透、雪崩，一文讲透！</title>
+      <link>http://localhost:3000/?post=1907fba2-449a-4c58-b01b-08c769891dd1</link>
+      <guid isPermaLink="false">1907fba2-449a-4c58-b01b-08c769891dd1</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>了解Redis缓存失效的三种常见场景：缓存击穿、穿透和雪崩，并学习如何通过设置随机过期时间、使用互斥锁等方法有效应对这些问题。</description>
+      <category>Redis</category>
+      <category>Performance</category>
+      <category>Caching</category>
+      <category>Database</category>
+      <category>Concurrency</category>
+    </item>
+    <item>
+      <title>阿里巴巴 Java 开发手册</title>
+      <link>http://localhost:3000/?post=977ce09e-e2b6-44cd-9209-9cf9ca0cf462</link>
+      <guid isPermaLink="false">977ce09e-e2b6-44cd-9209-9cf9ca0cf462</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>《阿里巴巴Java开发手册》总结了阿里巴巴集团技术团队的实战经验，旨在提升软件交付质量。手册涵盖编程规约、异常日志、MySQL数据库、工程结构和安全规约五大块，强调代码规范的重要性，以提高开发效率和协作水平。</description>
+      <category>Java</category>
+      <category>Coding Standards</category>
+      <category>Software Development</category>
+      <category>Database Design</category>
+      <category>Concurrency</category>
+    </item>
+    <item>
+      <title>SQL调优全攻略：从执行原理到实战技巧</title>
+      <link>http://localhost:3000/?post=39a43752-55da-46aa-928b-04d71581ae56</link>
+      <guid isPermaLink="false">39a43752-55da-46aa-928b-04d71581ae56</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>随着数据库数据量激增，低效SQL可能导致响应时间飙升和性能问题。通过优化查询语句、索引及执行计划，可显著提升数据库性能。</description>
+      <category>Sql Optimization</category>
+      <category>Database Performance</category>
+      <category>Query Execution</category>
+      <category>Indexing Strategies</category>
+      <category>Concurrency Control</category>
+    </item>
+    <item>
+      <title>Dockerfile编写全解析：从基础到实战</title>
+      <link>http://localhost:3000/?post=d6904a84-7695-480e-aac1-058b66886536</link>
+      <guid isPermaLink="false">d6904a84-7695-480e-aac1-058b66886536</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>通过Dockerfile自动化构建轻量级、可移植的容器化应用环境，确保应用在不同环境中的一致性运行。掌握Dockerfile编写技巧和最佳实践，可以显著提升部署效率和资源利用率。</description>
+      <category>Docker</category>
+      <category>Python</category>
+      <category>Java</category>
+      <category>Containerization</category>
+      <category>Frontend Development</category>
+    </item>
+    <item>
+      <title>Lua脚本从入门到精通：超详细语法与实战指南（附案例解析）</title>
+      <link>http://localhost:3000/?post=976880ea-56fb-4de1-a254-9f844622c6c5</link>
+      <guid isPermaLink="false">976880ea-56fb-4de1-a254-9f844622c6c5</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Lua语言以其轻量级设计、独特数据结构和高效协程模型，成为游戏开发与实时数据处理的理想选择。掌握其核心特性和高级用法，可大幅提升性能与开发效率。</description>
+      <category>Performance Optimization</category>
+      <category>Web Development</category>
+      <category>Lua</category>
+      <category>Programming</category>
+      <category>Game Development</category>
+    </item>
+    <item>
+      <title>Nginx 基础配置教程</title>
+      <link>http://localhost:3000/?post=6215487c-4df0-4fc8-bb08-7ee47ce6be6c</link>
+      <guid isPermaLink="false">6215487c-4df0-4fc8-bb08-7ee47ce6be6c</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>了解Nginx配置文件的核心结构，包括全局设置、事件处理及HTTP服务定义，掌握其高效托管静态资源与反向代理的关键技巧。</description>
+      <category>Nginx</category>
+      <category>Web Server</category>
+      <category>Configuration</category>
+      <category>Load Balancing</category>
+      <category>Https</category>
+    </item>
+    <item>
+      <title>Java NIO 深度解析：从核心原理到实战优化</title>
+      <link>http://localhost:3000/?post=8ac9fe1e-1cce-463d-928d-b4dac8b1636b</link>
+      <guid isPermaLink="false">8ac9fe1e-1cce-463d-928d-b4dac8b1636b</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>深入了解NIO的高级特性如直接缓冲区和内存映射文件，掌握性能优化技巧及粘包拆包解决方案，助你构建高效稳定的网络应用。</description>
+      <category>Performance Optimization</category>
+      <category>Java</category>
+      <category>Nio</category>
+      <category>Buffer Management</category>
+      <category>Network Programming</category>
+    </item>
+    <item>
+      <title>Java NIO 入门：从阻塞到非阻塞的 IO 编程革命</title>
+      <link>http://localhost:3000/?post=a2a12d9e-601f-42bf-9980-dc506e3207d5</link>
+      <guid isPermaLink="false">a2a12d9e-601f-42bf-9980-dc506e3207d5</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Java NIO 通过非阻塞 IO 和多路复用技术，解决了传统 BIO 在高并发场景下的线程资源昂贵和上下文切换开销大的问题，实现了单线程管理海量连接的高效模式。</description>
+      <category>Java NIO</category>
+      <category>Non-Blocking IO</category>
+      <category>High Concurrency</category>
+      <category>Selector</category>
+      <category>Buffer</category>
+    </item>
+    <item>
+      <title>DDD领域驱动设计深度入门：从理论体系到实战全流程解析</title>
+      <link>http://localhost:3000/?post=46ee52a1-e2e2-4a2b-b4e5-9522210145cd</link>
+      <guid isPermaLink="false">46ee52a1-e2e2-4a2b-b4e5-9522210145cd</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>DDD通过重构软件开发的底层逻辑，将业务与技术统一，显著提升系统可维护性和扩展性，从面向过程脚本到面向业务模型，逐步解决复杂度爆炸和扩展性差的问题。</description>
+      <category>Domain Driven Design</category>
+      <category>Software Architecture</category>
+      <category>Business Logic</category>
+      <category>Strategic Design</category>
+      <category>Tactical Design</category>
+    </item>
+    <item>
+      <title>🎨开源绘图神器 Draw.io，你不能错过！</title>
+      <link>http://localhost:3000/?post=0e769a1e-9af8-428d-94d6-ddfbcc024079</link>
+      <guid isPermaLink="false">0e769a1e-9af8-428d-94d6-ddfbcc024079</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Draw.io是一款免费开源的绘图工具，支持多种图表绘制，操作简便且功能强大，适用于职场、学习和设计等多种场景。</description>
+      <category>Open Source</category>
+      <category>Draw.io</category>
+      <category>Diagramming Tools</category>
+      <category>Web Application</category>
+      <category>Vscode Plugins</category>
+    </item>
+    <item>
+      <title>如何使用 Django 构建 RESTful API 接口？</title>
+      <link>http://localhost:3000/?post=6ee672a0-cfe2-4d12-8bc4-4f2952cacb82</link>
+      <guid isPermaLink="false">6ee672a0-cfe2-4d12-8bc4-4f2952cacb82</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>掌握Django构建RESTful API的精髓，从环境搭建到功能扩展，一步步教你打造高效、安全的Web服务接口。</description>
+      <category>Web Development</category>
+      <category>Django</category>
+      <category>Restful Api</category>
+    </item>
+    <item>
+      <title>Flask、Django 和 FastAPI 框架全面对比</title>
+      <link>http://localhost:3000/?post=1121de5a-eab3-48ac-90ad-479fa85388fe</link>
+      <guid isPermaLink="false">1121de5a-eab3-48ac-90ad-479fa85388fe</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>本文对比了Python Web开发中三大框架：Flask、Django和FastAPI，分析了各自的特点与适用场景，帮助开发者根据项目需求做出合适选择。</description>
+      <category>Web Development</category>
+      <category>Python</category>
+      <category>Flask</category>
+      <category>FastAPI</category>
+      <category>Django</category>
+    </item>
+    <item>
+      <title>常见设计模式详解——新手入门指南</title>
+      <link>http://localhost:3000/?post=6d577318-5747-483e-ab8b-2a8e557d8327</link>
+      <guid isPermaLink="false">6d577318-5747-483e-ab8b-2a8e557d8327</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>单例模式确保一个类仅有一个实例，并提供全局访问点，适用于控制资源访问和避免重复创建资源的场景。实现方式包括饿汉式、懒汉式及枚举等，每种方式都有其优缺点。</description>
+      <category>Java</category>
+      <category>Design Patterns</category>
+      <category>Software Engineering</category>
+      <category>Object-Oriented Programming</category>
+    </item>
+    <item>
+      <title>JMeter 性能测试从入门到实战：Windows 系统下的完整操作指南</title>
+      <link>http://localhost:3000/?post=dd3c769f-e09a-4ddd-a024-5e976cd6cd0e</link>
+      <guid isPermaLink="false">dd3c769f-e09a-4ddd-a024-5e976cd6cd0e</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>从JMeter的下载安装到编写性能测试脚本，再到执行测试并分析结果，本文提供了一站式的入门指南，帮助你轻松掌握这一强大的性能测试工具。</description>
+      <category>JMeter</category>
+      <category>Performance Testing</category>
+      <category>Web Interface Testing</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>探秘防水墙：互联网流量海域的坚固防波堤 🌊🛡️</title>
+      <link>http://localhost:3000/?post=2a84b729-94d9-4025-b518-28af62a6d759</link>
+      <guid isPermaLink="false">2a84b729-94d9-4025-b518-28af62a6d759</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>在互联网的广阔海域中，防水墙作为智能守护者，运用设备指纹识别、行为模式分析等技术，精准识别并阻止恶意刷量行为，捍卫网络纯净与数据真实。</description>
+      <category>Cybersecurity</category>
+      <category>Machine Learning</category>
+      <category>Data Analysis</category>
+      <category>Online Fraud Prevention</category>
+      <category>Behavioral Analytics</category>
+    </item>
+    <item>
+      <title>深入探讨 AI 领域的 MCP（Model Context Protocol）技术</title>
+      <link>http://localhost:3000/?post=2a0d7874-7a50-41b6-816f-ca4d30b59112</link>
+      <guid isPermaLink="false">2a0d7874-7a50-41b6-816f-ca4d30b59112</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>MCP协议通过标准化、高效、安全的特性，解决了大语言模型与外部数据源集成的难题，推动AI应用迈向新高度。</description>
+      <category>Model Context Protocol</category>
+      <category>Artificial Intelligence</category>
+      <category>Mcp</category>
+      <category>Data Integration</category>
+      <category>Security</category>
+    </item>
+    <item>
+      <title>RAG技术与Java实战：从0到1构建企业级知识库问答系统</title>
+      <link>http://localhost:3000/?post=2a656937-4499-4f00-8dc5-7f9d80d65088</link>
+      <guid isPermaLink="false">2a656937-4499-4f00-8dc5-7f9d80d65088</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>RAG技术结合Java工具链，解决了企业级应用中AI知识更新慢和可信度低的问题，通过检索外部知识库与大模型生成，实现高效、可靠的问答系统。</description>
+      <category>Rag</category>
+      <category>SpringBoot</category>
+      <category>Ai</category>
+      <category>EnterpriseApplications</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>深度解析 RAG 技术与智能体：从原理到应用</title>
+      <link>http://localhost:3000/?post=0271d128-6d8e-4791-84db-b29493a8dce2</link>
+      <guid isPermaLink="false">0271d128-6d8e-4791-84db-b29493a8dce2</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>探索检索增强生成（RAG）与智能体技术如何重塑AI，让机器不仅学会调用知识，还能自主行动，实现更可靠、更智能的人机交互。</description>
+      <category>Rag</category>
+      <category>Agents</category>
+      <category>Natural Language Processing</category>
+      <category>Artificial Intelligence</category>
+      <category>Machine Learning</category>
+    </item>
+    <item>
+      <title>Spring AI 框架详解：Java 开发者的 AI 集成指南</title>
+      <link>http://localhost:3000/?post=d50a0896-66ca-413c-b440-31f0f8a51d37</link>
+      <guid isPermaLink="false">d50a0896-66ca-413c-b440-31f0f8a51d37</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Spring AI 框架简化了 Java 开发者集成多种 AI 服务的过程，提供统一的 API 抽象层和强大的功能支持，助力快速构建智能应用。</description>
+      <category>Spring Ai</category>
+      <category>AI Integration</category>
+      <category>Openai</category>
+      <category>Chatbot Development</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>uTools 深度评测（2025 版）</title>
+      <link>http://localhost:3000/?post=5687dfa1-4949-4473-b852-1e6a64ebe92e</link>
+      <guid isPermaLink="false">5687dfa1-4949-4473-b852-1e6a64ebe92e</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>uTools 是一款极简、插件化、跨平台的桌面效率工具，凭借其丰富的插件生态和智能交互设计，显著提升生产力，尤其适合需要高效整合多工具的用户。</description>
+      <category>Performance Optimization</category>
+      <category>Productivity Tools</category>
+      <category>Cross-Platform</category>
+      <category>Plugin Ecosystem</category>
+      <category>AI Integration</category>
+    </item>
+    <item>
+      <title>这款国人开源的 Redis 可视化管理工具，你值得拥有！</title>
+      <link>http://localhost:3000/?post=5abcaf67-2aa6-4511-9379-f69deb7ad324</link>
+      <guid isPermaLink="false">5abcaf67-2aa6-4511-9379-f69deb7ad324</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Discover QuickRedis, a powerful and free Redis visualization tool that supports direct, sentinel, and cluster modes, making key management effortless and efficient.</description>
+      <category>Redis</category>
+      <category>Open Source</category>
+      <category>Visualization</category>
+      <category>GUI</category>
+      <category>QuickRedis</category>
+      <category>DatabaseManagement</category>
+      <category>Cross-Platform</category>
+      <category>Database Management</category>
+    </item>
+    <item>
+      <title>DBeaver 深度评测：跨平台数据库管理工具的全能之选</title>
+      <link>http://localhost:3000/?post=8abb8cd9-7388-476a-8acb-6846dc16ea12</link>
+      <guid isPermaLink="false">8abb8cd9-7388-476a-8acb-6846dc16ea12</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>DBeaver是一款开源免费的跨平台数据库管理工具，支持300+数据库及大数据平台，集查询、开发、管理、可视化于一体，适用于开发者、DBA及企业级数据管理场景。</description>
+      <category>Open Source</category>
+      <category>Sql Development</category>
+      <category>Data Visualization</category>
+      <category>Cross-Platform</category>
+      <category>Database Management</category>
+    </item>
+    <item>
+      <title>OBS Studio 深度评测：功能解析、优势与局限全面解读</title>
+      <link>http://localhost:3000/?post=30b6141c-1004-4e80-8edf-5e5babee5fe5</link>
+      <guid isPermaLink="false">30b6141c-1004-4e80-8edf-5e5babee5fe5</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>OBS Studio 是一款强大的免费开源屏幕录制与直播工具，支持多平台直播和高清录制，尤其适合游戏直播和内容创作。尽管对新手有一定学习曲线，但其丰富的功能和出色的画质表现使其成为专业用户的首选。</description>
+      <category>Screen Recording</category>
+      <category>Live Streaming</category>
+      <category>Open Source Software</category>
+      <category>OBS Studio</category>
+      <category>Content Creation</category>
+    </item>
+    <item>
+      <title>Miniconda 与 Anaconda 深度对比及安装指南：按需选择环境管理方案</title>
+      <link>http://localhost:3000/?post=f0dbb5f8-0bb5-4527-8d47-ee0a2bb00405</link>
+      <guid isPermaLink="false">f0dbb5f8-0bb5-4527-8d47-ee0a2bb00405</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Anaconda与Miniconda：前者是数据科学新手的“一站式工具箱”，后者则是轻量级环境部署的理想选择，两者在灵活性、安装速度和磁盘占用上各有千秋。</description>
+      <category>Python</category>
+      <category>Anaconda</category>
+      <category>Miniconda</category>
+      <category>Data Science</category>
+      <category>Environment Management</category>
+    </item>
+    <item>
+      <title>Anaconda 虚拟环境：数据科学的环境隔离神器</title>
+      <link>http://localhost:3000/?post=6f4832ee-cb87-499f-a23f-bf3e2ea185e5</link>
+      <guid isPermaLink="false">6f4832ee-cb87-499f-a23f-bf3e2ea185e5</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Anaconda 是一款专为数据科学和机器学习设计的跨平台环境管理工具，通过虚拟环境技术解决多项目版本冲突问题，大幅提升开发效率与团队协作能力。</description>
+      <category>Python</category>
+      <category>Conda</category>
+      <category>Data Science</category>
+      <category>Environment Management</category>
+      <category>Machine Learning</category>
+    </item>
+    <item>
+      <title>AB Download Manager：2025 年开源下载神器，IDM 免费替代方案</title>
+      <link>http://localhost:3000/?post=a1fe7113-d947-4ace-bc61-68b46ededb58</link>
+      <guid isPermaLink="false">a1fe7113-d947-4ace-bc61-68b46ededb58</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>体验极速下载与全能支持，AB Download Manager 以32线程加速、全协议兼容及智能管理，成为跨平台用户的理想选择。</description>
+      <category>Open Source</category>
+      <category>Download Manager</category>
+      <category>High-Speed Downloading</category>
+      <category>Browser Integration</category>
+      <category>Cross-Platform</category>
+    </item>
+    <item>
+      <title>SpringBoot 2.7 企业级项目结构详解</title>
+      <link>http://localhost:3000/?post=5b1c0365-d8ad-45f2-bcac-950bd35b0816</link>
+      <guid isPermaLink="false">5b1c0365-d8ad-45f2-bcac-950bd35b0816</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>SpringBoot 2.7 的企业级项目采用模块化分层架构，通过配置、控制、领域、数据访问、服务和工具等层次，提升代码的可维护性和扩展性。</description>
+      <category>Jwt</category>
+      <category>Rest Api</category>
+      <category>Web Development</category>
+      <category>SpringBoot</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>后端语言对比：Java VS Kotlin</title>
+      <link>http://localhost:3000/?post=88d6ce15-3ae6-47dc-baf3-0f4bf001395a</link>
+      <guid isPermaLink="false">88d6ce15-3ae6-47dc-baf3-0f4bf001395a</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>Kotlin 通过简洁的语法和现代特性提升开发效率，减少样板代码并提供空安全支持，尤其适合追求高效和简洁的新项目。</description>
+      <category>Kotlin</category>
+      <category>Backend Development</category>
+      <category>Programming Languages</category>
+      <category>Code Comparison</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>Java项目构建工具：Gradle Vs Maven</title>
+      <link>http://localhost:3000/?post=c83d3a84-045f-4fd2-9523-2fea759b86e1</link>
+      <guid isPermaLink="false">c83d3a84-045f-4fd2-9523-2fea759b86e1</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>在Java项目的构建工具选择中，Maven和Gradle各有优势。Maven以其标准化的项目结构和强大的依赖管理著称，而Gradle则提供了更高的灵活性和更优的构建性能，特别适合大型及复杂项目。最终的选择应基于项目的具体需求和个人偏好。</description>
+      <category>Gradle</category>
+      <category>Maven</category>
+      <category>Build Automation</category>
+      <category>Project Management</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>Spring Boot 注解详解</title>
+      <link>http://localhost:3000/?post=c0f8bd69-aa81-44a9-8b1c-6ec2a3f52a45</link>
+      <guid isPermaLink="false">c0f8bd69-aa81-44a9-8b1c-6ec2a3f52a45</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>本文详细讲解了Spring框架中常用的注解，包括MVC开发、依赖注入、Web请求处理等，并通过实例帮助读者更好地理解和应用这些注解。</description>
+      <category>Web Development</category>
+      <category>Spring</category>
+      <category>Dependency Injection</category>
+      <category>Annotations</category>
+      <category>Testing</category>
+    </item>
+    <item>
+      <title>Java学习路线（鱼皮）</title>
+      <link>http://localhost:3000/?post=0fd97e32-248b-4387-b2b0-86895db208c1</link>
+      <guid isPermaLink="false">0fd97e32-248b-4387-b2b0-86895db208c1</guid>
+      <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
+      <description>掌握Java从基础到高级的全面学习路径，包括编程基础、框架使用、项目实战及面试准备，助你成为后端开发高手。</description>
+      <category>Redis</category>
+      <category>Docker</category>
+      <category>Mybatis</category>
+      <category>Rabbitmq</category>
+      <category>Kubernetes</category>
+      <category>Microservices</category>
+      <category>JVM</category>
+      <category>Spring</category>
+      <category>SpringBoot</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>一个简单项目部署带你认识OS Copilot</title>
+      <link>http://localhost:3000/?post=4703f20d-c420-46ce-989c-544da13f8338</link>
+      <guid isPermaLink="false">4703f20d-c420-46ce-989c-544da13f8338</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>通过部署一个企业级用户中心系统，本文介绍了如何利用OS Copilot这一智能助手简化Linux运维，适合初级程序员快速上手。</description>
+      <category>Nginx</category>
+      <category>Docker</category>
+      <category>React</category>
+      <category>OS Copilot</category>
+      <category>SpringBoot</category>
+    </item>
+    <item>
+      <title>利用雨云实现frp内网穿透（docker版）的折腾过程</title>
+      <link>http://localhost:3000/?post=90a3fa01-3bcc-4c1b-b0a1-3039a91db2cf</link>
+      <guid isPermaLink="false">90a3fa01-3bcc-4c1b-b0a1-3039a91db2cf</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>选择适合需求的雨云服务器并配置FRP，实现内网穿透和远程访问，简单几步即可完成设置。</description>
+      <category>Nginx</category>
+      <category>Web Server</category>
+      <category>Docker</category>
+      <category>Frp</category>
+      <category>Vps</category>
+    </item>
+    <item>
+      <title>Arch Linux完整汉化教程</title>
+      <link>http://localhost:3000/?post=25b60c5b-e318-4136-8b0e-7d1365cbc493</link>
+      <guid isPermaLink="false">25b60c5b-e318-4136-8b0e-7d1365cbc493</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>通过系统设置添加中文并调整配置文件，重启后即可实现系统的全面汉化。</description>
+      <category>Linux</category>
+      <category>System Settings</category>
+      <category>Localization</category>
+      <category>Language Configuration</category>
+    </item>
+    <item>
+      <title>AUST自助上网_CPP</title>
+      <link>http://localhost:3000/?post=0fb8992a-e897-4393-a907-a0fe350c83fe</link>
+      <guid isPermaLink="false">0fb8992a-e897-4393-a907-a0fe350c83fe</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>此C++程序通过读写配置文件、发送POST请求和检查网络连接状态，实现了自动登录校园网并保持在线的功能。用户可通过输入特定命令退出程序。</description>
+      <category>C++</category>
+      <category>Networking</category>
+      <category>Curl</category>
+      <category>File I/O</category>
+      <category>Multithreading</category>
+    </item>
+    <item>
+      <title>在Ubuntu20.04正确打上p102-100驱动</title>
+      <link>http://localhost:3000/?post=8eb5c90e-71e2-4d84-80d6-fbd36e34b013</link>
+      <guid isPermaLink="false">8eb5c90e-71e2-4d84-80d6-fbd36e34b013</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>禁用开源驱动nouveau并添加官方源后，通过几步简单命令即可安装NVIDIA驱动，确保系统性能优化。使用`nvidia-smi`命令可验证安装是否成功。</description>
+      <category>Nvidia</category>
+      <category>Driver Installation</category>
+      <category>System Configuration</category>
+      <category>Linux</category>
+    </item>
+    <item>
+      <title>AUST自助上网-Shell</title>
+      <link>http://localhost:3000/?post=4bc57484-42b3-4142-9f3a-db4c9325e3ae</link>
+      <guid isPermaLink="false">4bc57484-42b3-4142-9f3a-db4c9325e3ae</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>自动脚本实现校园网自助认证，确保网络连接稳定，适用于实验室、图书馆及公共区域。</description>
+      <category>Bash</category>
+      <category>Automation</category>
+      <category>Ping</category>
+      <category>Networking</category>
+      <category>Curl</category>
+    </item>
+    <item>
+      <title>AUST自助上网-Python</title>
+      <link>http://localhost:3000/?post=9ca8c9e4-b58c-41ca-85f7-9fbeeb4304c2</link>
+      <guid isPermaLink="false">9ca8c9e4-b58c-41ca-85f7-9fbeeb4304c2</guid>
+      <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
+      <description>自动检测网络连接并尝试重新认证，确保持续在线，适用于校园网环境。通过用户输入学号、密码及运营商信息实现自动化登录。</description>
+      <category>Threading</category>
+      <category>Web Requests</category>
+      <category>Python</category>
+      <category>Networking</category>
+    </item>
+  </channel>
+</rss>
