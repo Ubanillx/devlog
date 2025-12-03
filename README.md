@@ -1,8 +1,18 @@
 # DevLog
 
-A modern, full-stack personal developer blog platform with a terminal-style aesthetic.
+A modern, full-stack personal developer blog platform featuring terminal-style UI, AI-powered content summarization & Q&A, Markdown editing, and SEO optimization.
 
-一个现代化的全栈个人开发者博客平台，采用终端风格设计。
+一个现代化的全栈个人开发者博客平台，采用终端风格设计，支持 AI 内容总结与问答、Markdown 编辑、SEO 优化等功能。
+
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
+![Gin](https://img.shields.io/badge/Gin-008ECF?style=flat-square&logo=gin&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
+![Alibaba Cloud](https://img.shields.io/badge/Alibaba_Cloud-FF6A00?style=flat-square&logo=alibabacloud&logoColor=white)
 
 # Demo / 展示
 
