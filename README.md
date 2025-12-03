@@ -1,8 +1,14 @@
-# DevLog
+<h1 align="center">DevLog</h1>
 
+<p align="center">
 A modern, full-stack personal developer blog platform featuring terminal-style UI, AI-powered content summarization & Q&A, Markdown editing, and SEO optimization.
+</p>
 
+<p align="center">
 一个现代化的全栈个人开发者博客平台，采用终端风格设计，支持 AI 内容总结与问答、Markdown 编辑、SEO 优化等功能。
+</p>
+
+<p align="center">
 
 ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white)
 ![Gin](https://img.shields.io/badge/Gin-008ECF?style=flat-square&logo=gin&logoColor=white)
@@ -13,6 +19,8 @@ A modern, full-stack personal developer blog platform featuring terminal-style U
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
 ![Alibaba Cloud](https://img.shields.io/badge/Alibaba_Cloud-FF6A00?style=flat-square&logo=alibabacloud&logoColor=white)
+
+</p>
 
 # Demo / 展示
 
