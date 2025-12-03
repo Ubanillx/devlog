@@ -97,8 +97,52 @@ npm run preview
 | `.env.development` | `VITE_API_BASE_URL` | API endpoint for development (e.g., `http://localhost:8080/api/v1`) |
 | `.env.production` | `VITE_API_BASE_URL` | API endpoint for production |
 
-### Site Configuration
-Global site settings (social links, footer, etc.) can be found in `src/config/index.ts` (or `siteConfig.json`).
+### Site Configuration (`config/siteConfig.json`)
+
+Customize your site content by editing `config/siteConfig.json` - **no code changes required**:
+
+```json
+{
+  "site": {
+    "title": "Site Title",
+    "subtitle": "Subtitle",
+    "description": "Site description for SEO",
+    "keywords": ["keyword1", "keyword2"]
+  },
+  "author": {
+    "name": "Your Name",
+    "avatar": "Avatar URL (optional)",
+    "bio": "Your bio",
+    "email": "your@email.com",
+    "location": "Your Location"
+  },
+  "social": {
+    "github": "GitHub URL",
+    "twitter": "Twitter/X URL",
+    "linkedin": "LinkedIn URL",
+    "website": "Personal website"
+  },
+  "footer": {
+    "copyright": "Copyright text",
+    "showPoweredBy": true
+  },
+  "about": {
+    "headline": "About page headline",
+    "status": { "availability": "Open for Projects", "coffeeLevel": 68 },
+    "techStack": [{ "category": "Frontend", "items": ["React", "TypeScript"] }],
+    "experience": [{ "role": "Role", "company": "Company", "period": "2024", "desc": "Description" }],
+    "contact": { "title": "Contact Title", "description": "Contact text", "buttonText": "Button" }
+  }
+}
+```
+
+| Section | Description |
+|---------|-------------|
+| `site` | Basic site info for SEO and page titles |
+| `author` | Author info displayed on about page and posts |
+| `social` | Social media links for footer and about page |
+| `footer` | Footer configuration including copyright |
+| `about` | Complete about page config: tech stack, experience, etc. |
 
 ## 📂 Project Structure
 

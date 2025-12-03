@@ -80,11 +80,20 @@ DevLog 是一个使用 Go (Golang) 构建的个人开发者博客后端 API。�
      - OSS 和 SEO 配置（可选）
 
 5. **生成管理员密码**
-   - 使用内置工具生成密码哈希值：
-     ```bash
-     go run cmd/genhash/main.go -password "你的管理员密码"
+   - 编辑 `cmd/genhash/main.go`，将 `password` 变量改为你的密码：
+     ```go
+     password := "你的管理员密码"
      ```
-   - 将管理员用户手动插入数据库，或使用种子脚本（如有）。
+   - 运行工具生成 bcrypt 哈希：
+     ```bash
+     go run cmd/genhash/main.go
+     ```
+   - 复制输出的哈希值，编辑 `schema.sql` 中的管理员 INSERT 语句：
+     ```sql
+     INSERT INTO admins (username, email, password_hash) 
+     SELECT 'your_username', 'your@email.com', '生成的哈希值'
+     WHERE NOT EXISTS (SELECT 1 FROM admins WHERE username = 'your_username');
+     ```
 
 ## 🏃‍♂️ 运行服务
 
@@ -101,27 +110,107 @@ go build -o devlog-server main.go
 ./devlog-server
 ```
 
-## ⚙️ 配置参考
+## ⚙️ 环境变量配置
 
-| 分类 | 变量名 | 说明 |
-|------|--------|------|
-| **数据库** | `DB_HOST` | 数据库主机地址（如：localhost） |
-| | `DB_PORT` | 数据库端口（默认：5432） |
-| | `DB_USER` | 数据库用户名 |
-| | `DB_PASSWORD` | 数据库密码 |
-| | `DB_NAME` | 数据库名称 |
-| **服务器** | `SERVER_PORT` | 监听端口（默认：8080） |
-| | `GIN_MODE` | 运行模式：`debug` 或 `release` |
-| | `JWT_SECRET` | 用于签发 Token 的密钥 |
-| **SSL** | `SERVER_SSL` | 是否启用 SSL：`true` 或 `false` |
-| | `SERVER_JKS_PATH` | JKS 证书文件路径 |
-| **AI** | `AI_PROVIDER` | AI 提供商：`openai`, `gemini`, `ollama`, `dashscope` |
-| | `AI_API_KEY` | AI 服务 API Key |
-| | `AI_MODEL` | 模型名称（如：`qwen-turbo`） |
-| **存储** | `OSS_ENDPOINT` | 阿里云 OSS 节点地址 |
-| | `OSS_ACCESS_KEY_ID` | OSS Access Key ID |
-| **SEO** | `SEO_SITE_URL` | 站点公开 URL |
-| | `SEO_PUSH_INTERVAL` | URL 推送间隔（如：`24h`） |
+### 数据库配置
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `DB_HOST` | ✅ | - | PostgreSQL 主机地址 |
+| `DB_PORT` | ❌ | `5432` | PostgreSQL 端口 |
+| `DB_USER` | ✅ | - | 数据库用户名 |
+| `DB_PASSWORD` | ✅ | - | 数据库密码 |
+| `DB_NAME` | ✅ | - | 数据库名称 |
+| `DB_SSLMODE` | ❌ | `disable` | SSL 模式：`disable`, `require`, `verify-full` |
+
+### 服务器配置
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `SERVER_PORT` | ❌ | `8080` | HTTP 服务监听端口 |
+| `GIN_MODE` | ❌ | `debug` | 运行模式：`debug`（开发）或 `release`（生产） |
+| `JWT_SECRET` | ✅ | - | JWT 签名密钥，生产环境请使用强随机字符串 |
+
+### SSL 配置（可选）
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `SERVER_SSL` | ❌ | `false` | 是否启用 HTTPS |
+| `SERVER_JKS_PATH` | ❌ | - | JKS 证书文件路径 |
+| `SERVER_JKS_PASSWORD` | ❌ | - | JKS 证书密码 |
+
+### AI 配置（可选）
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `AI_PROVIDER` | ❌ | - | AI 提供商：`openai`, `gemini`, `ollama`, `dashscope` |
+| `AI_API_KEY` | ❌ | - | AI 服务的 API Key |
+| `AI_MODEL` | ❌ | - | 使用的模型名称 |
+| `AI_BASE_URL` | ❌ | - | 自定义 API 地址（用于 Ollama 等本地服务） |
+
+**支持的 AI 提供商：**
+- `openai` - OpenAI GPT 系列
+- `gemini` - Google Gemini
+- `ollama` - 本地 Ollama 服务
+- `dashscope` - 阿里云百炼（通义千问），可选模型：`qwen-turbo`, `qwen-plus`, `qwen-max`
+
+### 阿里云 OSS 配置（可选）
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `OSS_ENDPOINT` | ❌ | - | OSS 节点地址，如 `oss-cn-hangzhou.aliyuncs.com` |
+| `OSS_ACCESS_KEY_ID` | ❌ | - | 阿里云 AccessKey ID |
+| `OSS_ACCESS_KEY_SECRET` | ❌ | - | 阿里云 AccessKey Secret |
+| `OSS_BUCKET_NAME` | ❌ | - | OSS Bucket 名称 |
+| `OSS_BASE_URL` | ❌ | - | OSS 访问的公开 URL 前缀 |
+
+#### 获取 AccessKey ID 和 AccessKey Secret
+
+1. **登录阿里云控制台**
+   - 访问 [阿里云官网](https://www.aliyun.com/) 并登录你的账号
+
+2. **进入 AccessKey 管理页面**
+   - 鼠标悬停在右上角头像，点击 **AccessKey 管理**
+   - 或直接访问：https://ram.console.aliyun.com/manage/ak
+
+3. **创建 AccessKey**
+   - 点击 **创建 AccessKey** 按钮
+   - 完成安全验证（手机/邮箱验证码）
+   - 创建成功后，**立即保存** AccessKey ID 和 AccessKey Secret
+   > ⚠️ **重要：** AccessKey Secret 仅在创建时显示一次，请务必妥善保存！
+
+4. **安全建议**
+   - 建议使用 RAM 子用户的 AccessKey，而非主账号
+   - 为子用户仅授予 OSS 相关权限（如 `AliyunOSSFullAccess`）
+   - 定期轮换 AccessKey
+
+#### 创建 OSS Bucket
+
+1. **进入 OSS 控制台**
+   - 访问 https://oss.console.aliyun.com/
+
+2. **创建 Bucket**
+   - 点击 **创建 Bucket**
+   - 填写 Bucket 名称（全局唯一）
+   - 选择地域（如：华东1-杭州）
+   - 读写权限选择 **公共读**（用于图片访问）
+
+3. **获取配置信息**
+   - `OSS_ENDPOINT`：在 Bucket 概览页查看，如 `oss-cn-hangzhou.aliyuncs.com`
+   - `OSS_BUCKET_NAME`：你创建的 Bucket 名称
+   - `OSS_BASE_URL`：`https://{bucket-name}.{endpoint}`，如 `https://my-blog.oss-cn-hangzhou.aliyuncs.com`
+
+### SEO 配置（可选）
+
+| 变量名 | 必填 | 默认值 | 说明 |
+|--------|------|--------|------|
+| `SEO_SITE_URL` | ❌ | - | 网站公开访问地址，如 `https://blog.example.com` |
+| `SEO_BAIDU_SITE` | ❌ | - | 百度站长平台验证的域名 |
+| `SEO_BAIDU_TOKEN` | ❌ | - | 百度站长平台推送 Token |
+| `SEO_BING_API_KEY` | ❌ | - | Bing IndexNow API Key |
+| `SEO_PUSH_INTERVAL` | ❌ | `24h` | URL 自动推送间隔，支持 `1h`, `24h` 等格式 |
+
+> **注意：** Bing IndexNow 需要在网站根目录放置 `{api_key}.txt` 验证文件
 
 ## 📚 API 文档
 

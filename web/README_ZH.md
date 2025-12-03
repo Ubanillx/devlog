@@ -97,8 +97,70 @@ npm run preview
 | `.env.development` | `VITE_API_BASE_URL` | 开发环境 API 地址（如：`http://localhost:8080/api/v1`） |
 | `.env.production` | `VITE_API_BASE_URL` | 生产环境 API 地址 |
 
-### 站点配置
-全局站点设置（社交链接、页脚等）位于 `config/index.ts`（或 `siteConfig.json`）中。
+### 站点配置 (`config/siteConfig.json`)
+
+通过编辑 `config/siteConfig.json` 自定义网站内容，**无需修改代码**：
+
+```json
+{
+  "site": {
+    "title": "网站标题",
+    "subtitle": "副标题",
+    "description": "网站描述（SEO）",
+    "keywords": ["关键词1", "关键词2"]
+  },
+  "author": {
+    "name": "你的名字",
+    "avatar": "头像 URL（可选）",
+    "bio": "个人简介",
+    "email": "邮箱地址",
+    "location": "所在地"
+  },
+  "social": {
+    "github": "GitHub 链接",
+    "twitter": "Twitter/X 链接",
+    "linkedin": "LinkedIn 链接",
+    "website": "个人网站"
+  },
+  "footer": {
+    "copyright": "版权信息和备案号",
+    "showPoweredBy": true
+  },
+  "about": {
+    "headline": "关于页面的标题介绍",
+    "status": {
+      "availability": "当前状态",
+      "coffeeLevel": 68,
+      "preferredShell": "zsh / bash"
+    },
+    "techStack": [
+      { "category": "Frontend", "items": ["React", "TypeScript"] },
+      { "category": "Backend", "items": ["Go", "PostgreSQL"] }
+    ],
+    "experience": [
+      {
+        "role": "职位",
+        "company": "公司",
+        "period": "时间",
+        "desc": "工作描述"
+      }
+    ],
+    "contact": {
+      "title": "联系标题",
+      "description": "联系描述",
+      "buttonText": "按钮文字"
+    }
+  }
+}
+```
+
+| 配置项 | 说明 |
+|--------|------|
+| `site` | 网站基本信息，用于 SEO 和页面标题 |
+| `author` | 作者信息，显示在关于页面和文章中 |
+| `social` | 社交媒体链接，显示在页脚和关于页面 |
+| `footer` | 页脚配置，包括版权和备案信息 |
+| `about` | 关于页面的完整配置，包括技术栈、工作经历等 |
 
 ## 📂 项目结构
 

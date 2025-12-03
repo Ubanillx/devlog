@@ -5,6 +5,9 @@
 -- Description: Complete database schema for personal developer blog
 -- ==========================================
 
+-- Enable pgvector extension for vector similarity search
+CREATE EXTENSION IF NOT EXISTS vector;
+
 -- Note: Using gen_random_uuid() which is built-in since PostgreSQL 13+
 -- No extension required
 
@@ -231,11 +234,13 @@ CREATE TRIGGER trigger_update_tag_use_count
 -- INITIAL DATA (Optional)
 -- ==========================================
 
--- Insert default admin (password: 'admin123' - CHANGE THIS IN PRODUCTION!)
--- Password hash generated using bcrypt with cost factor 10
+-- Insert default admin
+-- ⚠️ 请修改以下内容：
+-- 1. 使用 backend/cmd/genhash 生成你的密码哈希
+-- 2. 替换 username, email 和 password_hash
 INSERT INTO admins (username, email, password_hash) 
-SELECT 'ubanillx', 'liulongxin21@gmail.com', '$2a$10$1JipER3C.iSqM29oY0LJx.hfUUfZgvkgTFCJpFylMF6pcjk2YqP26'
-WHERE NOT EXISTS (SELECT 1 FROM admins WHERE username = 'ubanillx');
+SELECT 'admin', 'admin@example.com', '$2a$10$REPLACE_WITH_YOUR_GENERATED_HASH'
+WHERE NOT EXISTS (SELECT 1 FROM admins WHERE username = 'admin');
 
 -- Insert sample tags
 INSERT INTO tags (name, slug) VALUES 

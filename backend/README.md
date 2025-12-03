@@ -80,11 +80,20 @@ DevLog is a personal developer blog backend API built with Go (Golang). It provi
      - OSS and SEO configurations (optional)
 
 5. **Generate Admin Password**
-   - Use the included utility to generate a hashed password for the database:
-     ```bash
-     go run cmd/genhash/main.go -password "your-admin-password"
+   - Edit `cmd/genhash/main.go` and set your password:
+     ```go
+     password := "your-admin-password"
      ```
-   - Insert the admin user into the database manually or via seed script (if available).
+   - Run the tool to generate bcrypt hash:
+     ```bash
+     go run cmd/genhash/main.go
+     ```
+   - Copy the output hash and edit the admin INSERT in `schema.sql`:
+     ```sql
+     INSERT INTO admins (username, email, password_hash) 
+     SELECT 'your_username', 'your@email.com', 'generated_hash'
+     WHERE NOT EXISTS (SELECT 1 FROM admins WHERE username = 'your_username');
+     ```
 
 ## 🏃‍♂️ Running the Server
 
@@ -120,8 +129,49 @@ go build -o devlog-server main.go
 | | `AI_MODEL` | Specific model name (e.g., `qwen-turbo`) |
 | **Storage** | `OSS_ENDPOINT` | Alibaba Cloud OSS Endpoint |
 | | `OSS_ACCESS_KEY_ID` | OSS Access Key ID |
+| | `OSS_ACCESS_KEY_SECRET` | OSS Access Key Secret |
+| | `OSS_BUCKET_NAME` | OSS Bucket Name |
+| | `OSS_BASE_URL` | Public URL prefix for OSS |
 | **SEO** | `SEO_SITE_URL` | Your site's public URL |
 | | `SEO_PUSH_INTERVAL` | Interval for SEO push (e.g., `24h`) |
+
+### Alibaba Cloud OSS Setup Guide
+
+#### Getting AccessKey ID and AccessKey Secret
+
+1. **Log in to Alibaba Cloud Console**
+   - Visit [Alibaba Cloud](https://www.alibabacloud.com/) and sign in
+
+2. **Navigate to AccessKey Management**
+   - Hover over your avatar in the top-right corner, click **AccessKey Management**
+   - Or visit directly: https://ram.console.aliyun.com/manage/ak
+
+3. **Create AccessKey**
+   - Click **Create AccessKey** button
+   - Complete security verification (SMS/Email code)
+   - **Save immediately** the AccessKey ID and AccessKey Secret
+   > ⚠️ **Important:** AccessKey Secret is shown only once at creation. Save it securely!
+
+4. **Security Best Practices**
+   - Use RAM sub-user AccessKey instead of root account
+   - Grant only OSS permissions to the sub-user (e.g., `AliyunOSSFullAccess`)
+   - Rotate AccessKeys periodically
+
+#### Creating an OSS Bucket
+
+1. **Go to OSS Console**
+   - Visit https://oss.console.aliyun.com/
+
+2. **Create Bucket**
+   - Click **Create Bucket**
+   - Enter a globally unique Bucket name
+   - Select a region (e.g., China East 1 - Hangzhou)
+   - Set ACL to **Public Read** (for image access)
+
+3. **Get Configuration Values**
+   - `OSS_ENDPOINT`: Found in Bucket overview, e.g., `oss-cn-hangzhou.aliyuncs.com`
+   - `OSS_BUCKET_NAME`: Your Bucket name
+   - `OSS_BASE_URL`: `https://{bucket-name}.{endpoint}`, e.g., `https://my-blog.oss-cn-hangzhou.aliyuncs.com`
 
 ## 📚 API Documentation
 

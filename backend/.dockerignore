@@ -1,0 +1,32 @@
+# Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+backend.exe
+devlog-server-linux-amd64
+
+# Test files
+*_test.go
+
+# IDE
+.idea/
+.vscode/
+
+# Git
+.git
+.gitignore
+
+# Environment files
+.env
+.env.local
+
+# Documentation (keep docs/ for Swagger)
+*.md
+
+# JKS files (sensitive)
+JKS/
+
+# Build scripts
+build.ps1

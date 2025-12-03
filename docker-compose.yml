@@ -1,0 +1,90 @@
+services:
+  # PostgreSQL Database with pgvector extension
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: devlog-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-devlog}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-devlog123}
+      POSTGRES_DB: ${DB_NAME:-devlog}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    ports:
+      - "5432:5432"
+    networks:
+      - devlog-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-devlog} -d ${DB_NAME:-devlog}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: devlog-backend
+    restart: unless-stopped
+    environment:
+      # Database
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-devlog}
+      DB_PASSWORD: ${DB_PASSWORD:-devlog123}
+      DB_NAME: ${DB_NAME:-devlog}
+      DB_SSLMODE: disable
+      # Server
+      SERVER_PORT: 8080
+      GIN_MODE: ${GIN_MODE:-release}
+      SERVER_SSL: "false"
+      # JWT
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-in-production}
+      # AI Configuration
+      AI_PROVIDER: ${AI_PROVIDER:-dashscope}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_MODEL: ${AI_MODEL:-qwen-turbo}
+      # OSS Configuration
+      OSS_ENDPOINT: ${OSS_ENDPOINT:-}
+      OSS_ACCESS_KEY_ID: ${OSS_ACCESS_KEY_ID:-}
+      OSS_ACCESS_KEY_SECRET: ${OSS_ACCESS_KEY_SECRET:-}
+      OSS_BUCKET_NAME: ${OSS_BUCKET_NAME:-}
+      OSS_BASE_URL: ${OSS_BASE_URL:-}
+      # SEO Configuration
+      SEO_SITE_URL: ${SEO_SITE_URL:-}
+      SEO_BAIDU_SITE: ${SEO_BAIDU_SITE:-}
+      SEO_BAIDU_TOKEN: ${SEO_BAIDU_TOKEN:-}
+      SEO_BING_API_KEY: ${SEO_BING_API_KEY:-}
+      SEO_PUSH_INTERVAL: ${SEO_PUSH_INTERVAL:-24h}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - devlog-network
+
+  # Frontend Web App
+  frontend:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8080/api/v1}
+    container_name: devlog-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - devlog-network
+
+volumes:
+  postgres_data:
+
+networks:
+  devlog-network:
+    driver: bridge
