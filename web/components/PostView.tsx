@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { BlogPost } from '../types';
 import { AISummary } from './AISummary';
 import { AIChatSidebar } from './AIChatSidebar';
+import { TableOfContents } from './TableOfContents';
 import { CommentSection } from './CommentSection';
 import { PostsService } from '../api-client';
 import MarkdownIt from 'markdown-it';
@@ -15,29 +16,59 @@ interface PostViewProps {
   onBack: () => void;
 }
 
-// Initialize markdown-it with syntax highlighting
-const mdParser = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-  breaks: true,
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
+// 生成标题 ID 的辅助函数
+const generateBaseId = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\u4e00-\u9fa5]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+// 创建带有 ID 计数器的 markdown-it 实例
+const createMdParser = () => {
+  const idCounts: Record<string, number> = {};
+  
+  const parser = new MarkdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+    breaks: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return `<pre class="hljs"><code>${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`;
+        } catch (__) {}
+      }
       try {
-        return `<pre class="hljs"><code>${hljs.highlight(str, { language: lang, ignoreIllegals: true }).value}</code></pre>`;
+        return `<pre class="hljs"><code>${hljs.highlightAuto(str).value}</code></pre>`;
       } catch (__) {}
+      return `<pre class="hljs"><code>${parser.utils.escapeHtml(str)}</code></pre>`;
     }
-    // Auto-detect language if not specified
-    try {
-      return `<pre class="hljs"><code>${hljs.highlightAuto(str).value}</code></pre>`;
-    } catch (__) {}
-    return `<pre class="hljs"><code>${mdParser.utils.escapeHtml(str)}</code></pre>`;
-  }
-});
+  });
+
+  // 为标题添加唯一 ID
+  parser.renderer.rules.heading_open = (tokens, idx) => {
+    const token = tokens[idx];
+    const level = token.tag;
+    const contentToken = tokens[idx + 1];
+    const text = contentToken?.children?.map(t => t.content).join('') || '';
+    const baseId = generateBaseId(text);
+    
+    // 处理重复 ID
+    const count = idCounts[baseId] || 0;
+    const id = count === 0 ? baseId : `${baseId}-${count}`;
+    idCounts[baseId] = count + 1;
+    
+    return `<${level} id="${id}">`;
+  };
+
+  return parser;
+};
 
 // Markdown Renderer Component using markdown-it
 const MarkdownRenderer: React.FC<{ content: string }> = ({ content }) => {
-  const html = useMemo(() => mdParser.render(content), [content]);
+  // 每次内容变化时创建新的 parser 实例，确保 ID 计数器重置
+  const html = useMemo(() => createMdParser().render(content), [content]);
   const contentRef = useRef<HTMLDivElement>(null);
   const [images, setImages] = useState<{ src: string; key: string }[]>([]);
   const [visible, setVisible] = useState(false);
@@ -196,7 +227,7 @@ export const PostView: React.FC<PostViewProps> = ({ postId, onBack }) => {
 
   return (
     <>
-      <div className="max-w-[120rem] mx-auto px-4 flex justify-center gap-12 animate-fade-in">
+      <div className="max-w-[140rem] mx-auto px-4 flex justify-center gap-8 animate-fade-in">
         <article className="w-full max-w-6xl animate-slide-up">
           <button 
             onClick={onBack}
@@ -244,12 +275,21 @@ export const PostView: React.FC<PostViewProps> = ({ postId, onBack }) => {
       <div className="h-24"></div> {/* Bottom spacer */}
     </article>
 
-    {/* Desktop Sidebar Column */}
-    <div className="hidden xl:block w-80 flex-shrink-0">
+    {/* Left Sidebar - Table of Contents */}
+    <aside className="hidden lg:block w-64 flex-shrink-0 order-first">
+      <div className="sticky top-28 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <div className="bg-surface/30 border border-border/50 rounded-lg p-4 backdrop-blur-sm">
+          <TableOfContents content={post.content} />
+        </div>
+      </div>
+    </aside>
+
+    {/* Right Sidebar - AI Chat */}
+    <aside className="hidden xl:block w-80 flex-shrink-0">
       <div className="sticky top-28 animate-fade-in" style={{ animationDelay: '300ms' }}>
         <AIChatSidebar content={post.content} mode="sidebar" />
       </div>
-    </div>
+    </aside>
     </div>
 
     {/* Mobile/Tablet Floating Button */}
