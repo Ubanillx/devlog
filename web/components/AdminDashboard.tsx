@@ -25,8 +25,11 @@ interface AdminDashboardProps {
 
 type Tab = 'posts' | 'comments' | 'settings';
 
+const PAGE_SIZE = 10;
+
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost, onUpdatePost, onDeletePost, onTogglePublish, onLogout }) => {
   const [activeTab, setActiveTab] = useState<Tab>('posts');
+  const [currentPage, setCurrentPage] = useState(1);
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   
@@ -331,7 +334,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
                         </tr>
                       </thead>
                       <tbody>
-                        {posts.map(post => (
+                        {posts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE).map(post => (
                           <tr key={post.id} className="border-b border-border hover:bg-surface/50 transition-colors group">
                             <td className="px-4 py-3 font-medium text-textLight max-w-[300px] truncate" title={post.title}>{post.title}</td>
                             <td className="px-4 py-3 whitespace-nowrap">
@@ -380,6 +383,34 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
                       </tbody>
                     </table>
                   </div>
+                  
+                  {/* 分页组件 */}
+                  {posts.length > PAGE_SIZE && (
+                    <div className="flex items-center justify-between mt-6 pt-4 border-t border-border">
+                      <div className="text-xs text-secondary font-mono">
+                        Showing {(currentPage - 1) * PAGE_SIZE + 1}-{Math.min(currentPage * PAGE_SIZE, posts.length)} of {posts.length}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                          disabled={currentPage === 1}
+                          className="px-3 py-1 text-xs font-mono border border-border rounded hover:bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                          ← prev
+                        </button>
+                        <span className="text-xs font-mono text-secondary px-2">
+                          {currentPage} / {Math.ceil(posts.length / PAGE_SIZE)}
+                        </span>
+                        <button
+                          onClick={() => setCurrentPage(p => Math.min(Math.ceil(posts.length / PAGE_SIZE), p + 1))}
+                          disabled={currentPage >= Math.ceil(posts.length / PAGE_SIZE)}
+                          className="px-3 py-1 text-xs font-mono border border-border rounded hover:bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                        >
+                          next →
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </>
               ) : (
                 // EDIT / CREATE MODE

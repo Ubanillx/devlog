@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { LoadingScreen } from './components/LoadingScreen';
 import { TerminalHero } from './components/TerminalHero';
 import { PostCard } from './components/PostCard';
@@ -55,43 +55,101 @@ const App: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  
+  // 分页状态
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const PAGE_SIZE = 10;
+  
+  // 用于检测滚动到底部的 observer
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // 加载文章列表
+  // 加载文章列表的通用函数
+  const loadPosts = async (isAdmin: boolean, pageNum: number = 1) => {
+    const res = isAdmin
+      ? await PostsService.getAdminPosts(pageNum, PAGE_SIZE, 'all')
+      : await PostsService.getPosts(pageNum, PAGE_SIZE);
+    const newPosts = res.data?.posts?.map(mapPostResponse) || [];
+    setPosts(pageNum === 1 ? newPosts : prev => [...prev, ...newPosts]);
+    setPage(pageNum);
+    setHasMore((res.data?.page || 1) < (res.data?.totalPages || 1));
+    return newPosts;
+  };
+
+  // 初始化
   useEffect(() => {
     const initApp = async () => {
       setIsLoading(true);
       try {
-        // 检查是否已登录
         const token = getToken();
         if (token) {
           const userRes = await AuthService.getAuthMe();
           if (userRes.data) {
             setIsLoggedIn(true);
-            // 管理员加载所有文章
-            const res = await PostsService.getAdminPosts(1, 100, 'all');
-            setPosts(res.data?.posts?.map(mapPostResponse) || []);
+            await loadPosts(true);
           } else {
-            // Token 无效，清除并加载公开文章
             clearToken();
-            const res = await PostsService.getPosts(1, 100);
-            setPosts(res.data?.posts?.map(mapPostResponse) || []);
+            await loadPosts(false);
           }
         } else {
-          // 游客只加载已发布文章
-          const res = await PostsService.getPosts(1, 100);
-          setPosts(res.data?.posts?.map(mapPostResponse) || []);
+          await loadPosts(false);
         }
       } catch (e) {
         console.error('Failed to load posts:', e);
-        // 出错时加载公开文章
-        const res = await PostsService.getPosts(1, 100);
-        setPosts(res.data?.posts?.map(mapPostResponse) || []);
+        await loadPosts(false);
       } finally {
         setIsLoading(false);
       }
     };
     initApp();
   }, []);
+
+  // 加载更多文章（HOME页面懒加载使用）
+  const loadMorePosts = useCallback(async () => {
+    if (isLoadingMore || !hasMore) return;
+    
+    setIsLoadingMore(true);
+    try {
+      // 延迟1秒，增加加载体验
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      await loadPosts(isLoggedIn, page + 1);
+    } catch (e) {
+      console.error('Failed to load more posts:', e);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  }, [page, hasMore, isLoadingMore, isLoggedIn]);
+
+  // 懒加载触发器的 callback ref
+  const loadMoreRef = useCallback((node: HTMLDivElement | null) => {
+    // 清除旧的 observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
+
+    if (node && hasMore && !isLoadingMore) {
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            loadMorePosts();
+          }
+        },
+        { 
+          threshold: 0,
+          rootMargin: '100px' // 提前100px触发
+        }
+      );
+      observerRef.current.observe(node);
+      
+      // 检查元素是否已经在视口中（首次加载时）
+      const rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100) {
+        loadMorePosts();
+      }
+    }
+  }, [hasMore, isLoadingMore, loadMorePosts]);
 
   
   // Navigation Handlers
@@ -159,9 +217,7 @@ const App: React.FC = () => {
         setToken(res.data.token);
         setIsLoggedIn(true);
         setViewState(ViewState.ADMIN);
-        // 管理员加载所有文章（包括草稿）
-        const postsRes = await PostsService.getAdminPosts(1, 100, 'all');
-        setPosts(postsRes.data?.posts?.map(mapPostResponse) || []);
+        await loadPosts(true);
         return true;
       }
     } catch (e) {
@@ -173,9 +229,7 @@ const App: React.FC = () => {
   const handleLogout = async () => {
     clearToken();
     setIsLoggedIn(false);
-    // 游客只能看已发布文章
-    const res = await PostsService.getPosts(1, 100);
-    setPosts(res.data?.posts?.map(mapPostResponse) || []);
+    await loadPosts(false);
     navigateHome();
   };
 
@@ -315,15 +369,46 @@ const App: React.FC = () => {
                       Directory is empty.
                     </div>
                   ) : (
-                    posts.map(post => (
-                      <PostCard 
-                        key={post.id} 
-                        post={post} 
-                        onClick={navigateToPost} 
-                      />
+                    posts.map((post, index) => (
+                      <div 
+                        key={post.id}
+                        className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+                        style={{ animationDelay: `${(index % PAGE_SIZE) * 80}ms`, animationFillMode: 'both' }}
+                      >
+                        <PostCard 
+                          post={post} 
+                          onClick={navigateToPost} 
+                        />
+                      </div>
                     ))
                   )}
                 </div>
+                
+                {/* 懒加载触发器 */}
+                {!isLoading && (
+                  <div ref={loadMoreRef} className="py-8 text-center">
+                    {isLoadingMore ? (
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="flex gap-1">
+                          <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                          <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                          <span className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                        </div>
+                        <div className="text-secondary font-mono text-sm">
+                          Loading more posts...
+                        </div>
+                      </div>
+                    ) : hasMore ? (
+                      <div className="text-gray-500 font-mono text-sm animate-pulse">
+                        ↓ Scroll for more
+                      </div>
+                    ) : posts.length > 0 ? (
+                      <div className="text-gray-500 font-mono text-sm">
+                        — End of posts —
+                      </div>
+                    ) : null}
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -347,7 +432,7 @@ const App: React.FC = () => {
                 onUpdatePost={handleUpdatePost}
                 onDeletePost={handleDeletePost}
                 onTogglePublish={handleTogglePublish}
-                onLogout={handleLogout} 
+                onLogout={handleLogout}
               />
           )}
           
