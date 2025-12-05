@@ -6,6 +6,9 @@ WORKDIR /app
 # Install dependencies
 RUN apk add --no-cache git
 
+# Set Go module proxy for faster downloads
+ENV GOPROXY=https://goproxy.cn,direct
+
 # Copy go mod files
 COPY go.mod go.sum ./
 RUN go mod download

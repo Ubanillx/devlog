@@ -18,3 +18,6 @@ backend.exe
 Thumbs.db
 
 JKS
+
+# 编译二进制
+devlog-server-linux-amd64
