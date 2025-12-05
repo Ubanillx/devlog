@@ -93,12 +93,83 @@ devlog/
 
 ## 🚀 Quick Start / 快速开始
 
-### Prerequisites / 环境要求
+### Option 1: Docker Compose (Recommended) / Docker 一键部署（推荐）
+
+```bash
+# Clone the repository / 克隆仓库
+git clone https://github.com/your-username/devlog.git
+cd devlog
+
+# Start all services / 启动所有服务
+docker compose up -d
+
+# Access / 访问
+# http://localhost
+```
+
+All services (PostgreSQL + Backend + Frontend) run on a single port (80), with nginx proxying API requests to the backend.
+
+所有服务（数据库 + 后端 + 前端）统一通过 80 端口访问，nginx 自动代理 API 请求到后端。
+
+#### Environment Variables / 环境变量配置
+
+Create a `.env` file in the project root to customize settings:
+
+在项目根目录创建 `.env` 文件以自定义配置：
+
+```bash
+# Database / 数据库
+DB_USER=devlog
+DB_PASSWORD=your_secure_password
+DB_NAME=devlog
+
+# JWT Secret / JWT 密钥
+JWT_SECRET=your_jwt_secret_key
+
+# AI Configuration (Optional) / AI 配置（可选）
+AI_PROVIDER=dashscope
+AI_API_KEY=your_ai_api_key
+AI_MODEL=qwen-turbo
+
+# OSS Configuration (Optional) / OSS 配置（可选）
+OSS_ENDPOINT=oss-cn-hangzhou.aliyuncs.com
+OSS_ACCESS_KEY_ID=your_access_key
+OSS_ACCESS_KEY_SECRET=your_access_secret
+OSS_BUCKET_NAME=your_bucket
+OSS_BASE_URL=https://your_bucket.oss-cn-hangzhou.aliyuncs.com
+```
+
+#### Default Admin Account / 默认管理员账号
+
+| Username | Password |
+|----------|----------|
+| `admin` | `root123456` |
+
+To change the password before deployment / 部署前修改密码：
+
+```bash
+# 1. Generate password hash / 生成密码哈希
+cd backend/cmd/genhash
+go run main.go -password "your_new_password"
+
+# 2. Copy the hash and replace in backend/schema.sql (line ~242)
+# 复制生成的哈希值，替换 backend/schema.sql 中的 password_hash（约 242 行）
+```
+
+For more Docker deployment options, see [DOCKER.md](./DOCKER.md).
+
+更多 Docker 部署选项请参阅 [DOCKER.md](./DOCKER.md)。
+
+---
+
+### Option 2: Manual Setup / 手动部署
+
+#### Prerequisites / 环境要求
 - Go 1.25+
 - Node.js 18+
 - PostgreSQL 12+
 
-### 1. Start Backend / 启动后端
+#### 1. Start Backend / 启动后端
 ```bash
 cd backend
 cp .env.example .env
@@ -106,7 +177,7 @@ cp .env.example .env
 go run main.go
 ```
 
-### 2. Start Frontend / 启动前端
+#### 2. Start Frontend / 启动前端
 ```bash
 cd web
 cp .env.development.example .env.development
@@ -114,7 +185,7 @@ npm install
 npm run dev
 ```
 
-### 3. Access / 访问
+#### 3. Access / 访问
 - **Frontend:** http://localhost:3000
 - **Backend API:** http://localhost:8080/api/v1
 - **Swagger Docs:** http://localhost:8080/swagger/index.html

@@ -239,7 +239,7 @@ CREATE TRIGGER trigger_update_tag_use_count
 -- 1. 使用 backend/cmd/genhash 生成你的密码哈希
 -- 2. 替换 username, email 和 password_hash
 INSERT INTO admins (username, email, password_hash) 
-SELECT 'admin', 'admin@example.com', '$2a$10$REPLACE_WITH_YOUR_GENERATED_HASH'
+SELECT 'admin', 'admin@example.com', '$2a$10$2Wm1.HSKoAeq1MxtEHBG/O16YPXnUBM34vwONiPo7DhfMVUJ7EmWC'
 WHERE NOT EXISTS (SELECT 1 FROM admins WHERE username = 'admin');
 
 -- Insert sample tags
