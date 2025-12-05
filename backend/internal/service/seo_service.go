@@ -76,11 +76,12 @@ func (s *seoService) Start(ctx context.Context) {
 	}
 }
 
-// PushAllURLs fetches all published posts and pushes their URLs
+// PushAllURLs fetches latest published posts and pushes their URLs
 func (s *seoService) PushAllURLs() error {
 	log.Println("Starting SEO URL push...")
 
-	posts, _, err := s.postRepo.FindAll(1, 1000, "", "", "published")
+	// Only push latest 5 posts to avoid exceeding Baidu daily quota
+	posts, _, err := s.postRepo.FindAll(1, 5, "", "", "published")
 	if err != nil {
 		return fmt.Errorf("failed to fetch posts: %w", err)
 	}
@@ -90,7 +91,7 @@ func (s *seoService) PushAllURLs() error {
 	urls = append(urls, s.cfg.SiteURL)
 	// Add about page
 	urls = append(urls, s.cfg.SiteURL+"/?view=about")
-	// Add post URLs
+	// Add latest post URLs
 	for _, post := range posts {
 		urls = append(urls, fmt.Sprintf("%s/?post=%s", s.cfg.SiteURL, post.ID))
 	}
