@@ -16,8 +16,9 @@ RUN go mod download
 # Copy source code
 COPY . .
 
-# Build the application (limit parallelism to reduce memory usage)
-RUN CGO_ENABLED=0 GOOS=linux go build -p 1 -o main .
+# Build the application (limit CPU and memory usage)
+# GOMEMLIMIT limits Go runtime memory, -p 1 limits parallel compilation
+RUN GOMAXPROCS=1 GOMEMLIMIT=512MiB CGO_ENABLED=0 GOOS=linux go build -p 1 -o main .
 
 # Production stage
 FROM alpine:latest
