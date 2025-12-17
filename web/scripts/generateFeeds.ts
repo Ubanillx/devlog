@@ -1,8 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import { loadEnv } from 'vite';
 
-const SITE_URL = process.env.SITE_URL || 'http://localhost:3000';
-const API_URL = process.env.API_URL || 'http://localhost:8080';
+const mode = process.env.NODE_ENV || 'production';
+const env = loadEnv(mode, process.cwd(), '');
+
+const SITE_URL = process.env.SITE_URL || env.SITE_URL || 'https://blog.ubanillx.com';
+const API_URL = process.env.API_URL || env.API_URL || 'https://blog.ubanillx.com';
 const PUBLIC_DIR = path.resolve(process.cwd(), 'public');
 
 interface BlogPost {
