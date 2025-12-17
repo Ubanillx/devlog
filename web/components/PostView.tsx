@@ -62,6 +62,10 @@ const createMdParser = () => {
     return `<${level} id="${id}">`;
   };
 
+  // Wrap tables in a container for horizontal scrolling
+  parser.renderer.rules.table_open = () => '<div class="table-wrapper"><table>';
+  parser.renderer.rules.table_close = () => '</table></div>';
+
   return parser;
 };
 

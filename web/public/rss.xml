@@ -5,7 +5,67 @@
     <link>http://localhost:3000</link>
     <description>Technical blog feed</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 28 Nov 2025 02:35:55 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 04 Dec 2025 09:23:30 GMT</lastBuildDate>
+    <item>
+      <title>移动端 Flutter 本地存储双雄：Isar 与 Drift 选型实战指南</title>
+      <link>http://localhost:3000/?post=c14eb43e-0cb6-4d86-b3e8-c3e3701ea46c</link>
+      <guid isPermaLink="false">c14eb43e-0cb6-4d86-b3e8-c3e3701ea46c</guid>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Isar Database 以其极致性能和对象导向设计成为 Flutter 社区的 NoSQL 首选，特别适合列表展示类应用；而 Drift 则通过类型安全和强关联支持在复杂业务场景中脱颖而出。选择合适的数据库能极大提升开发效率与用户体验。</description>
+      <category>Sql</category>
+      <category>Database</category>
+      <category>Flutter</category>
+      <category>NoSql</category>
+      <category>Orm</category>
+    </item>
+    <item>
+      <title>为什么DDD架构需要依赖倒置？</title>
+      <link>http://localhost:3000/?post=ee75366b-19d9-4df9-9839-8bba6fd6da92</link>
+      <guid isPermaLink="false">ee75366b-19d9-4df9-9839-8bba6fd6da92</guid>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+      <description>在DDD中，领域层与基础层的依赖关系是核心难点。通过依赖倒置原则，保持领域层纯净，提高代码可测试性和技术可替换性。</description>
+      <category>Architecture</category>
+      <category>Domain Driven Design</category>
+      <category>Java</category>
+      <category>Spring Boot</category>
+      <category>Dependency Inversion Principle</category>
+    </item>
+    <item>
+      <title>告别臃肿的 POJO：Java Record 让代码更优雅</title>
+      <link>http://localhost:3000/?post=e6fcaa06-1ea0-41e3-9065-37192c901357</link>
+      <guid isPermaLink="false">e6fcaa06-1ea0-41e3-9065-37192c901357</guid>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+      <description>Java Record 作为一种不可变的数据载体，通过简洁的语法大幅减少了样板代码，提升了代码可读性和开发效率。</description>
+      <category>Web Development</category>
+      <category>Java</category>
+      <category>Record</category>
+      <category>Immutable</category>
+      <category>Data Carrier</category>
+    </item>
+    <item>
+      <title>DDD项目架构解析</title>
+      <link>http://localhost:3000/?post=debd1170-2bd2-4163-a521-b7368a32e378</link>
+      <guid isPermaLink="false">debd1170-2bd2-4163-a521-b7368a32e378</guid>
+      <pubDate>Thu, 04 Dec 2025 00:00:00 GMT</pubDate>
+      <description>探索典型的DDD分层项目结构，从接口层到领域层，再到基础设施层，每一层都有明确的职责和特点，实现高内聚低耦合的设计。</description>
+      <category>Rest Api</category>
+      <category>Mybatis</category>
+      <category>Spring Security</category>
+      <category>Domain Driven Design</category>
+      <category>Java</category>
+    </item>
+    <item>
+      <title>Flutter 开发资源与生态库大全</title>
+      <link>http://localhost:3000/?post=3819df30-4931-4f7d-81d1-b1421a24358c</link>
+      <guid isPermaLink="false">3819df30-4931-4f7d-81d1-b1421a24358c</guid>
+      <pubDate>Tue, 02 Dec 2025 00:00:00 GMT</pubDate>
+      <description>探索 Flutter 学习资源与常用三方框架库，从官方文档到实战教程，再到丰富的 UI 组件和实用工具，助你快速上手并构建高效应用。</description>
+      <category>Dart</category>
+      <category>Mobile Development</category>
+      <category>UI Components</category>
+      <category>State Management</category>
+      <category>Flutter</category>
+    </item>
     <item>
       <title>Redis：不仅仅是缓存，更是你应用起飞的火箭推进器！🚀</title>
       <link>http://localhost:3000/?post=f1560c00-b33e-4ffb-9d02-543b9d94257e</link>
@@ -13,9 +73,9 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Redis不仅是高速缓存，更是现代应用的全能加速器，从缓存、分布式锁到消息队列，它都能大显身手。通过生动的Java代码示例，探索Redis如何在多种场景下提升应用性能。</description>
       <category>Redis</category>
-      <category>Java</category>
       <category>Performance</category>
       <category>Caching</category>
+      <category>Java</category>
       <category>Distributed Systems</category>
     </item>
     <item>
@@ -25,10 +85,10 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>在千万级大表上添加列可能引发生产事故，本文探讨了从午夜操作到使用在线DDL工具等多种解决方案，旨在实现对业务影响最小的在线变更。</description>
       <category>Database Management</category>
-      <category>Sql</category>
       <category>Online Ddl</category>
       <category>Database Architecture</category>
       <category>High Availability</category>
+      <category>Sql</category>
     </item>
     <item>
       <title>MybatisPlus 超详细教程：从入门到复杂查询（含示例代码）</title>
@@ -37,8 +97,8 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>MybatisPlus 在简化开发和提高效率方面表现出色，本文将带你从环境搭建到复杂查询的实现，全面掌握这一强大的工具。</description>
       <category>Java</category>
-      <category>MybatisPlus</category>
       <category>Spring Boot</category>
+      <category>MybatisPlus</category>
       <category>Data Persistence</category>
       <category>Crud Operations</category>
     </item>
@@ -120,8 +180,8 @@
       <guid isPermaLink="false">976880ea-56fb-4de1-a254-9f844622c6c5</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Lua语言以其轻量级设计、独特数据结构和高效协程模型，成为游戏开发与实时数据处理的理想选择。掌握其核心特性和高级用法，可大幅提升性能与开发效率。</description>
-      <category>Performance Optimization</category>
       <category>Web Development</category>
+      <category>Performance Optimization</category>
       <category>Lua</category>
       <category>Programming</category>
       <category>Game Development</category>
@@ -168,11 +228,11 @@
       <guid isPermaLink="false">46ee52a1-e2e2-4a2b-b4e5-9522210145cd</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>DDD通过重构软件开发的底层逻辑，将业务与技术统一，显著提升系统可维护性和扩展性，从面向过程脚本到面向业务模型，逐步解决复杂度爆炸和扩展性差的问题。</description>
-      <category>Domain Driven Design</category>
       <category>Software Architecture</category>
       <category>Business Logic</category>
       <category>Strategic Design</category>
       <category>Tactical Design</category>
+      <category>Domain Driven Design</category>
     </item>
     <item>
       <title>🎨开源绘图神器 Draw.io，你不能错过！</title>
@@ -432,8 +492,8 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>掌握Java从基础到高级的全面学习路径，包括编程基础、框架使用、项目实战及面试准备，助你成为后端开发高手。</description>
       <category>Redis</category>
-      <category>Docker</category>
       <category>Mybatis</category>
+      <category>Docker</category>
       <category>Rabbitmq</category>
       <category>Kubernetes</category>
       <category>Microservices</category>

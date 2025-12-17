@@ -11,6 +11,36 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>http://localhost:3000/?post=c14eb43e-0cb6-4d86-b3e8-c3e3701ea46c</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/?post=ee75366b-19d9-4df9-9839-8bba6fd6da92</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/?post=e6fcaa06-1ea0-41e3-9065-37192c901357</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/?post=debd1170-2bd2-4163-a521-b7368a32e378</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>http://localhost:3000/?post=3819df30-4931-4f7d-81d1-b1421a24358c</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>http://localhost:3000/?post=f1560c00-b33e-4ffb-9d02-543b9d94257e</loc>
     <lastmod>2025-11-28</lastmod>
     <changefreq>monthly</changefreq>

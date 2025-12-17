@@ -185,9 +185,20 @@ func (s *commentService) toCommentResponse(comment *entity.Comment) dto.CommentR
 		postID = &pid
 	}
 
+	var parentID *string
+	if comment.ParentID != nil {
+		pid := comment.ParentID.String()
+		parentID = &pid
+	}
+
 	var replies []dto.CommentResponse
 	for _, reply := range comment.Replies {
 		replies = append(replies, s.toCommentResponse(&reply))
+	}
+
+	var postTitle string
+	if comment.Post != nil {
+		postTitle = comment.Post.Title
 	}
 
 	return dto.CommentResponse{
@@ -197,6 +208,8 @@ func (s *commentService) toCommentResponse(comment *entity.Comment) dto.CommentR
 		Timestamp: s.formatTimestamp(comment.CreatedAt),
 		Role:      comment.Role,
 		PostID:    postID,
+		PostTitle: postTitle,
+		ParentID:  parentID,
 		CreatedAt: comment.CreatedAt,
 		Replies:   replies,
 	}

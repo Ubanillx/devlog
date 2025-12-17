@@ -143,7 +143,14 @@ func (h *CommentHandler) DeleteComment(c *gin.Context) {
 	c.JSON(http.StatusOK, dto.Success(nil))
 }
 
-// GetAllComments (Admin) - get all comments for moderation
+// GetAllComments godoc
+// @Summary Get all comments (admin only)
+// @Tags comments
+// @Security BearerAuth
+// @Param page query int false "Page number" default(1)
+// @Param page_size query int false "Page size" default(20)
+// @Success 200 {object} dto.APIResponse{data=dto.CommentListResponse}
+// @Router /admin/comments [get]
 func (h *CommentHandler) GetAllComments(c *gin.Context) {
 	var query dto.CommentListQuery
 	if err := c.ShouldBindQuery(&query); err != nil {

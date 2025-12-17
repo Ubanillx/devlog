@@ -13,6 +13,28 @@ import { OpenAPI } from '../core/OpenAPI';
 import { request as __request } from '../core/request';
 export class CommentsService {
     /**
+     * Get all comments (admin only)
+     * @param page Page number
+     * @param pageSize Page size
+     * @returns any OK
+     * @throws ApiError
+     */
+    public static getAdminComments(
+        page: number = 1,
+        pageSize: number = 20,
+    ): CancelablePromise<(dto_APIResponse & {
+        data?: dto_CommentListResponse;
+    })> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/admin/comments',
+            query: {
+                'page': page,
+                'page_size': pageSize,
+            },
+        });
+    }
+    /**
      * Delete a comment (admin only)
      * @param id Comment ID
      * @returns dto_APIResponse OK

@@ -23,6 +23,7 @@ export interface Comment {
   timestamp: string;
   role: 'guest' | 'admin';
   postId?: string;
+  postTitle?: string;
   parentId?: string;
   replies?: Comment[];
 }

@@ -60,7 +60,11 @@ definitions:
         type: string
       id:
         type: string
+      parentId:
+        type: string
       postId:
+        type: string
+      postTitle:
         type: string
       replies:
         items:
@@ -319,6 +323,34 @@ info:
   title: DevLog API
   version: "1.0"
 paths:
+  /admin/comments:
+    get:
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Page size
+        in: query
+        name: page_size
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/dto.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.CommentListResponse'
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Get all comments (admin only)
+      tags:
+      - comments
   /admin/posts:
     get:
       description: Get all posts including drafts, requires authentication

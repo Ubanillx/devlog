@@ -32,6 +32,8 @@ type CommentResponse struct {
 	Timestamp string            `json:"timestamp"`
 	Role      string            `json:"role"`
 	PostID    *string           `json:"postId,omitempty"`
+	PostTitle string            `json:"postTitle,omitempty"`
+	ParentID  *string           `json:"parentId,omitempty"`
 	CreatedAt time.Time         `json:"createdAt"`
 	Replies   []CommentResponse `json:"replies,omitempty"`
 }

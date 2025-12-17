@@ -7,7 +7,9 @@ export type dto_CommentResponse = {
     content?: string;
     createdAt?: string;
     id?: string;
+    parentId?: string;
     postId?: string;
+    postTitle?: string;
     replies?: Array<dto_CommentResponse>;
     role?: string;
     timestamp?: string;

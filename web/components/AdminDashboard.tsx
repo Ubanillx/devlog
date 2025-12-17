@@ -65,31 +65,25 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
   // 加载所有文章的评论
   useEffect(() => {
     const fetchAllComments = async () => {
-      if (posts.length === 0) return;
+      if (activeTab !== 'comments') return;
       
       setCommentsLoading(true);
       try {
-        const allComments: Comment[] = [];
-        
-        for (const post of posts) {
-          const res = await CommentsService.getPostsComments(post.id);
-          if (res.data?.comments) {
-            res.data.comments.forEach(c => {
-              allComments.push({
-                id: c.id || '',
-                author: c.author || 'Anonymous',
-                content: c.content || '',
-                timestamp: c.timestamp || '',
-                role: (c.role as 'admin' | 'guest') || 'guest',
-                postId: post.id
-              });
-            });
-          }
+        // 获取最新的100条评论
+        const res = await CommentsService.getAdminComments(1, 100);
+        if (res.data?.comments) {
+          const allComments: Comment[] = res.data.comments.map(c => ({
+            id: c.id || '',
+            author: c.author || 'Anonymous',
+            content: c.content || '',
+            timestamp: c.timestamp || '',
+            role: (c.role as 'admin' | 'guest') || 'guest',
+            postId: c.postId,
+            postTitle: c.postTitle, // Map the post title
+            parentId: c.parentId
+          }));
+          setComments(allComments);
         }
-        
-        // 按时间排序，最新的在前
-        allComments.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-        setComments(allComments);
       } catch (error) {
         console.error('Failed to load comments:', error);
       } finally {
@@ -98,7 +92,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
     };
 
     fetchAllComments();
-  }, [posts]);
+  }, [activeTab]);
 
   const [isSaving, setIsSaving] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
@@ -575,7 +569,20 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
                                {comment.role === 'admin' && (
                                  <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded border border-primary/20">ADMIN</span>
                                )}
-                               <span className="text-[10px] text-secondary font-mono">on Post #{comment.postId}</span>
+                               <span className="text-[10px] text-secondary font-mono">
+                                 {comment.postTitle ? (
+                                   <a 
+                                     href={`/?post=${comment.postId}`} 
+                                     target="_blank" 
+                                     rel="noopener noreferrer"
+                                     className="hover:text-primary hover:underline transition-colors"
+                                   >
+                                     on "{comment.postTitle}"
+                                   </a>
+                                 ) : (
+                                   `on Post #${comment.postId}`
+                                 )}
+                               </span>
                             </div>
                             <div className="flex items-center gap-3">
                                <span className="text-xs text-secondary">{comment.timestamp}</span>
@@ -852,6 +859,26 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
                          className="w-full bg-surface border border-border rounded p-2 text-textLight text-sm focus:border-primary outline-none h-16"
                        />
                      </div>
+                     <div className="grid grid-cols-2 gap-4">
+                       <div>
+                         <label className="block text-xs font-mono text-secondary mb-1">Terminal Command</label>
+                         <input 
+                           value={settings.about.terminalCommand?.command || ''}
+                           onChange={(e) => setSettings({...settings, about: {...settings.about, terminalCommand: {...(settings.about.terminalCommand || {args: ''}), command: e.target.value}}})}
+                           className="w-full bg-surface border border-border rounded p-2 text-textLight text-sm focus:border-primary outline-none"
+                           placeholder="whoami"
+                         />
+                       </div>
+                       <div>
+                         <label className="block text-xs font-mono text-secondary mb-1">Arguments</label>
+                         <input 
+                           value={settings.about.terminalCommand?.args || ''}
+                           onChange={(e) => setSettings({...settings, about: {...settings.about, terminalCommand: {...(settings.about.terminalCommand || {command: ''}), args: e.target.value}}})}
+                           className="w-full bg-surface border border-border rounded p-2 text-textLight text-sm focus:border-primary outline-none"
+                           placeholder="--verbose"
+                         />
+                       </div>
+                     </div>
                      <div className="grid grid-cols-3 gap-4">
                        <div>
                          <label className="block text-xs font-mono text-secondary mb-1">Availability</label>
@@ -910,35 +937,141 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ posts, onAddPost
                    </div>
                  </div>
 
-                 {/* Tech Stack & Experience - Read Only Preview */}
+                 {/* Tech Stack Settings */}
                  <div className="bg-bg border border-border rounded-lg p-4">
-                   <h3 className="text-sm font-bold text-textLight mb-4 flex items-center gap-2">
-                     <span className="text-primary">#</span> Tech Stack & Experience
-                   </h3>
-                   <p className="text-xs text-secondary mb-4">
-                     Edit these arrays directly in the exported JSON file for full control.
-                   </p>
-                   <div className="grid grid-cols-2 gap-4">
-                     <div>
-                       <label className="block text-xs font-mono text-secondary mb-2">Tech Stack Categories</label>
-                       <div className="flex flex-wrap gap-1">
-                         {settings.about.techStack.map((stack, idx) => (
-                           <span key={idx} className="text-[10px] bg-surface px-2 py-1 rounded text-textLight border border-border">
-                             {stack.category} ({stack.items.length})
-                           </span>
-                         ))}
+                   <div className="flex justify-between items-center mb-4">
+                     <h3 className="text-sm font-bold text-textLight flex items-center gap-2">
+                       <span className="text-primary">#</span> Tech Stack
+                     </h3>
+                     <button 
+                       onClick={() => setSettings({
+                         ...settings, 
+                         about: {
+                           ...settings.about, 
+                           techStack: [...settings.about.techStack, { category: 'New Category', items: [] }]
+                         }
+                       })}
+                       className="text-xs text-primary hover:text-blue-300 font-mono"
+                     >
+                       + Add Category
+                     </button>
+                   </div>
+                   <div className="space-y-4">
+                     {settings.about.techStack.map((stack, idx) => (
+                       <div key={idx} className="bg-surface/30 p-3 rounded border border-border">
+                         <div className="flex justify-between items-center mb-2 gap-2">
+                           <input 
+                             value={stack.category}
+                             onChange={(e) => {
+                               const newStack = [...settings.about.techStack];
+                               newStack[idx] = { ...newStack[idx], category: e.target.value };
+                               setSettings({...settings, about: {...settings.about, techStack: newStack}});
+                             }}
+                             className="bg-bg border border-border rounded p-1.5 text-textLight text-xs font-bold focus:border-primary outline-none flex-grow"
+                             placeholder="Category Name"
+                           />
+                           <button 
+                             onClick={() => {
+                               const newStack = settings.about.techStack.filter((_, i) => i !== idx);
+                               setSettings({...settings, about: {...settings.about, techStack: newStack}});
+                             }}
+                             className="text-red-400 hover:text-red-300 text-xs px-2"
+                           >
+                             ×
+                           </button>
+                         </div>
+                         <textarea 
+                           value={stack.items.join(', ')}
+                           onChange={(e) => {
+                             const newStack = [...settings.about.techStack];
+                             newStack[idx] = { ...newStack[idx], items: e.target.value.split(',').map(s => s.trim()) };
+                             setSettings({...settings, about: {...settings.about, techStack: newStack}});
+                           }}
+                           className="w-full bg-bg border border-border rounded p-2 text-textLight text-xs focus:border-primary outline-none h-16"
+                           placeholder="Items (comma separated)"
+                         />
                        </div>
-                     </div>
-                     <div>
-                       <label className="block text-xs font-mono text-secondary mb-2">Experience Entries</label>
-                       <div className="flex flex-wrap gap-1">
-                         {settings.about.experience.map((exp, idx) => (
-                           <span key={idx} className="text-[10px] bg-surface px-2 py-1 rounded text-textLight border border-border">
-                             {exp.role}
-                           </span>
-                         ))}
+                     ))}
+                   </div>
+                 </div>
+
+                 {/* Experience Settings */}
+                 <div className="bg-bg border border-border rounded-lg p-4">
+                   <div className="flex justify-between items-center mb-4">
+                     <h3 className="text-sm font-bold text-textLight flex items-center gap-2">
+                       <span className="text-primary">#</span> Experience
+                     </h3>
+                     <button 
+                       onClick={() => setSettings({
+                         ...settings, 
+                         about: {
+                           ...settings.about, 
+                           experience: [...settings.about.experience, { role: 'New Role', company: 'Company', period: '2024', desc: 'Description...' }]
+                         }
+                       })}
+                       className="text-xs text-primary hover:text-blue-300 font-mono"
+                     >
+                       + Add Job
+                     </button>
+                   </div>
+                   <div className="space-y-4">
+                     {settings.about.experience.map((exp, idx) => (
+                       <div key={idx} className="bg-surface/30 p-3 rounded border border-border space-y-2">
+                         <div className="flex justify-between items-start gap-2">
+                           <div className="grid grid-cols-2 gap-2 flex-grow">
+                             <input 
+                               value={exp.role}
+                               onChange={(e) => {
+                                 const newExp = [...settings.about.experience];
+                                 newExp[idx] = { ...newExp[idx], role: e.target.value };
+                                 setSettings({...settings, about: {...settings.about, experience: newExp}});
+                               }}
+                               className="bg-bg border border-border rounded p-1.5 text-textLight text-xs font-bold focus:border-primary outline-none"
+                               placeholder="Role"
+                             />
+                             <input 
+                               value={exp.company}
+                               onChange={(e) => {
+                                 const newExp = [...settings.about.experience];
+                                 newExp[idx] = { ...newExp[idx], company: e.target.value };
+                                 setSettings({...settings, about: {...settings.about, experience: newExp}});
+                               }}
+                               className="bg-bg border border-border rounded p-1.5 text-textLight text-xs focus:border-primary outline-none"
+                               placeholder="Company"
+                             />
+                             <input 
+                               value={exp.period}
+                               onChange={(e) => {
+                                 const newExp = [...settings.about.experience];
+                                 newExp[idx] = { ...newExp[idx], period: e.target.value };
+                                 setSettings({...settings, about: {...settings.about, experience: newExp}});
+                               }}
+                               className="bg-bg border border-border rounded p-1.5 text-textLight text-xs font-mono focus:border-primary outline-none"
+                               placeholder="Period"
+                             />
+                           </div>
+                           <button 
+                             onClick={() => {
+                               const newExp = settings.about.experience.filter((_, i) => i !== idx);
+                               setSettings({...settings, about: {...settings.about, experience: newExp}});
+                             }}
+                             className="text-red-400 hover:text-red-300 text-xs px-2 pt-1"
+                           >
+                             ×
+                           </button>
+                         </div>
+                         <textarea 
+                           value={exp.desc}
+                           onChange={(e) => {
+                             const newExp = [...settings.about.experience];
+                             newExp[idx] = { ...newExp[idx], desc: e.target.value };
+                             setSettings({...settings, about: {...settings.about, experience: newExp}});
+                           }}
+                           className="w-full bg-bg border border-border rounded p-2 text-textLight text-xs focus:border-primary outline-none h-20"
+                           placeholder="Job Description"
+                         />
                        </div>
-                     </div>
+                     ))}
                    </div>
                  </div>
                </div>

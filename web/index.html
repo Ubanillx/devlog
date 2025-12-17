@@ -231,6 +231,17 @@
         border-collapse: collapse;
         margin: 1.5rem 0;
       }
+
+      /* Table wrapper for horizontal scrolling */
+      .markdown-body .table-wrapper {
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .markdown-body .table-wrapper table {
+        margin: 0;
+      }
       
       .markdown-body th, .markdown-body td {
         border: 1px solid var(--border);
@@ -386,6 +397,9 @@
               border: 'var(--border)',
               'terminal-bg': 'var(--terminal-bg)',
               'terminal-border': 'var(--terminal-border)',
+            },
+            maxWidth: {
+              '5xl': '98rem',
             },
             animation: {
               'fade-in': 'fadeIn 0.5s ease-out forwards',

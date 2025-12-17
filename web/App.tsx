@@ -291,7 +291,7 @@ const App: React.FC = () => {
               <div className="h-4 w-px bg-border/60"></div>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-3">
               {siteConfig.social.github && (
                 <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-textLight transition-colors">
                   <GitHubIcon />
@@ -334,6 +334,18 @@ const App: React.FC = () => {
               >
                 /about
               </a>
+              <div className="flex items-center gap-4 py-2 justify-center">
+                {siteConfig.social.github && (
+                  <a href={siteConfig.social.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-textLight transition-colors p-2">
+                    <GitHubIcon />
+                  </a>
+                )}
+                {siteConfig.social.twitter && (
+                  <a href={siteConfig.social.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors p-2">
+                    <TwitterIcon />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         )}

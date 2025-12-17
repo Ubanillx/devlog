@@ -38,6 +38,10 @@ export interface SiteConfig {
   };
   about: {
     headline: string;
+    terminalCommand: {
+      command: string;
+      args: string;
+    };
     status: {
       availability: string;
       coffeeLevel: number;
@@ -82,6 +86,10 @@ export const defaultConfig: SiteConfig = {
   },
   about: {
     headline: "I am a developer focused on building great web experiences.",
+    terminalCommand: {
+      command: "whoami",
+      args: "--verbose"
+    },
     status: {
       availability: "Open for Projects",
       coffeeLevel: 60,

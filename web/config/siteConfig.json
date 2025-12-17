@@ -7,13 +7,16 @@
       "blog",
       "developer",
       "coding",
-      "tech"
+      "tech",
+      "java",
+      "backend",
+      "ai"
     ]
   },
   "author": {
     "name": "Ubanillx",
     "avatar": "",
-    "bio": "Full-stack developer passionate about building great products with vide coding.",
+    "bio": "Backend developer & AI enthusiast. Java core, Python auxiliary. Loves to tinker.",
     "email": "liulongxin21@gmail.com",
     "location": "Anhui Huainan, China"
   },
@@ -24,11 +27,15 @@
     "website": ""
   },
   "footer": {
-    "copyright": "© 2025 UbanillxのDevLog. All rights reserved. 赣ICP备2024029884号-1 |  皖公网安备34040002000482",
+    "copyright": " 2025 UbanillxのDevLog. All rights reserved. 赣ICP备2024029884号-1 |  皖公网安备34040002000482",
     "showPoweredBy": true
   },
   "about": {
-    "headline": "I am a digital craftsman focused on building accessible, pixel-perfect, and performant web experiences. I obsess over component APIs and system architecture.",
+    "headline": "I am a backend-focused developer who loves to tinker. Java is my primary weapon, complemented by Python. I have a strong passion for AI technologies and building intelligent systems.",
+    "terminalCommand": {
+      "command": "java -jar",
+      "args": "ubanillx-profile.jar"
+    },
     "status": {
       "availability": "Open for Projects",
       "coffeeLevel": 68,
@@ -50,9 +57,10 @@
         "items": [
           "Java",
           "Spring Boot",
+          "Python",
+          "LangChain4j",
           "PostgreSQL",
-          "Redis",
-          "LangChain4j"
+          "Redis"
         ]
       },
       {

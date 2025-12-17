@@ -16,8 +16,8 @@ export const AboutView: React.FC = () => {
       {/* Header */}
       <div className="mb-10 border-b border-border pb-8">
         <h1 className="text-3xl md:text-4xl font-bold text-textLight mb-4 flex items-center gap-3">
-          <span className="text-primary">whoami</span> 
-          <span className="text-secondary text-xl font-normal">--verbose</span>
+          <span className="text-primary">{about.terminalCommand?.command || 'whoami'}</span> 
+          <span className="text-secondary text-xl font-normal">{about.terminalCommand?.args || '--verbose'}</span>
         </h1>
         <p className="text-lg text-text font-light leading-relaxed max-w-2xl">
           {about.headline}

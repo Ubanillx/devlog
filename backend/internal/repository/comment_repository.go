@@ -88,7 +88,7 @@ func (r *commentRepository) GetAllForAdmin(page, pageSize int) ([]entity.Comment
 	}
 
 	offset := (page - 1) * pageSize
-	if err := query.Order("created_at DESC").
+	if err := query.Preload("Post").Order("created_at DESC").
 		Offset(offset).Limit(pageSize).
 		Find(&comments).Error; err != nil {
 		return nil, 0, err
