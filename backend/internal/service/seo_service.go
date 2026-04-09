@@ -90,10 +90,10 @@ func (s *seoService) PushAllURLs() error {
 	// Add homepage
 	urls = append(urls, s.cfg.SiteURL)
 	// Add about page
-	urls = append(urls, s.cfg.SiteURL+"/?view=about")
+	urls = append(urls, s.cfg.SiteURL+"/about")
 	// Add latest post URLs
 	for _, post := range posts {
-		urls = append(urls, fmt.Sprintf("%s/?post=%s", s.cfg.SiteURL, post.ID))
+		urls = append(urls, fmt.Sprintf("%s/posts/%s", s.cfg.SiteURL, post.ID))
 	}
 
 	log.Printf("Pushing %d URLs to search engines", len(urls))
