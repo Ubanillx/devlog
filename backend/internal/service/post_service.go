@@ -24,12 +24,18 @@ type PostService interface {
 type postService struct {
 	postRepo repository.PostRepository
 	tagRepo  repository.TagRepository
+	aiRepo   repository.AIContentRepository
 }
 
-func NewPostService(postRepo repository.PostRepository, tagRepo repository.TagRepository) PostService {
+func NewPostService(
+	postRepo repository.PostRepository,
+	tagRepo repository.TagRepository,
+	aiRepo repository.AIContentRepository,
+) PostService {
 	return &postService{
 		postRepo: postRepo,
 		tagRepo:  tagRepo,
+		aiRepo:   aiRepo,
 	}
 }
 
@@ -73,6 +79,12 @@ func (s *postService) GetPostByID(id string) (*dto.PostResponse, error) {
 	go s.postRepo.IncrementViewCount(postID)
 
 	response := s.toPostResponse(post)
+	if s.aiRepo != nil {
+		record, err := s.aiRepo.FindLatestSuccessfulSummary(postID)
+		if err == nil && record != nil {
+			response.AISummary = strings.TrimSpace(record.GeneratedSummary)
+		}
+	}
 	return &response, nil
 }
 

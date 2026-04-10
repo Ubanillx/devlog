@@ -4,6 +4,7 @@ export interface BlogPost {
   date: string;
   tags: string[];
   excerpt: string;
+  aiSummary?: string | null;
   content: string;
   readTime: string;
   viewCount?: number;

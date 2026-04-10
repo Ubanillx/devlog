@@ -1,6 +1,7 @@
 package database
 
 import (
+	"backend/internal/model/entity"
 	"fmt"
 	"log"
 
@@ -30,6 +31,11 @@ func Connect(dsn string) error {
 	sqlDB.SetMaxOpenConns(100)
 
 	log.Println("Database connected successfully")
+
+	if err := DB.AutoMigrate(&entity.AIGeneratedContent{}); err != nil {
+		return fmt.Errorf("failed to auto-migrate ai_generated_content: %w", err)
+	}
+
 	return nil
 }
 

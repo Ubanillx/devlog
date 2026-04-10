@@ -52,6 +52,7 @@ type PostResponse struct {
 	Date        string    `json:"date"`
 	Tags        []string  `json:"tags"`
 	Excerpt     string    `json:"excerpt"`
+	AISummary   string    `json:"aiSummary,omitempty"`
 	Content     string    `json:"content"`
 	ReadTime    string    `json:"readTime"`
 	ViewCount   int       `json:"viewCount"`

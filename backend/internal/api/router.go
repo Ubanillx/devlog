@@ -28,9 +28,10 @@ func NewRouter(db *gorm.DB) *Router {
 	tagRepo := repository.NewTagRepository(db)
 	commentRepo := repository.NewCommentRepository(db)
 	adminRepo := repository.NewAdminRepository(db)
+	aiContentRepo := repository.NewAIContentRepository(db)
 
 	// Initialize Services
-	postService := service.NewPostService(postRepo, tagRepo)
+	postService := service.NewPostService(postRepo, tagRepo, aiContentRepo)
 	tagService := service.NewTagService(tagRepo)
 	commentService := service.NewCommentService(commentRepo, postRepo)
 	authService := service.NewAuthService(adminRepo)
@@ -41,7 +42,8 @@ func NewRouter(db *gorm.DB) *Router {
 	if err != nil {
 		log.Printf("AI service not available: %v", err)
 	} else {
-		aiHandler = v1.NewAIHandler(aiService)
+		postSummaryService := service.NewPostSummaryService(postRepo, aiContentRepo, aiService)
+		aiHandler = v1.NewAIHandler(aiService, postSummaryService)
 	}
 
 	// Initialize OSS Service (optional)
@@ -116,6 +118,7 @@ func NewRouter(db *gorm.DB) *Router {
 
 		// AI Chat (Public - rate limited in production)
 		if aiHandler != nil {
+			apiV1.POST("/posts/:id/summary", aiHandler.GeneratePostSummary)
 			apiV1.POST("/ai/chat", aiHandler.Chat)
 			apiV1.POST("/ai/chat/stream", aiHandler.ChatStream)
 		}

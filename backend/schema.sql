@@ -127,6 +127,7 @@ CREATE TABLE IF NOT EXISTS ai_generated_content (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     post_id UUID NOT NULL REFERENCES blog_posts(id) ON DELETE CASCADE,
     generated_excerpt TEXT,
+    generated_summary TEXT,
     generated_read_time VARCHAR(20),
     ai_model VARCHAR(100),
     prompt_tokens INTEGER DEFAULT 0,
@@ -142,6 +143,7 @@ CREATE TABLE IF NOT EXISTS ai_generated_content (
 
 COMMENT ON TABLE ai_generated_content IS 'AI-generated content suggestions for blog posts';
 COMMENT ON COLUMN ai_generated_content.generated_excerpt IS 'AI-generated excerpt/summary';
+COMMENT ON COLUMN ai_generated_content.generated_summary IS 'AI-generated full post summary';
 COMMENT ON COLUMN ai_generated_content.generated_read_time IS 'AI-calculated reading time';
 COMMENT ON COLUMN ai_generated_content.ai_model IS 'AI model used (e.g., "gemini-pro", "gpt-4")';
 COMMENT ON COLUMN ai_generated_content.prompt_tokens IS 'Number of tokens in the prompt';

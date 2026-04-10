@@ -23,6 +23,10 @@ type SummarizePostRequest struct {
 	Content string `json:"content" binding:"required"`
 }
 
+type GeneratePostSummaryRequest struct {
+	Force bool `json:"force"`
+}
+
 // ========== Response DTOs ==========
 
 type AIGenerationResponse struct {

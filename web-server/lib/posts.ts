@@ -9,6 +9,7 @@ export const mapPostResponse = (post: any): BlogPost => ({
   date: post.date || post.publishedDate || new Date().toISOString().split('T')[0],
   tags: post.tags || [],
   excerpt: post.excerpt,
+  aiSummary: post.aiSummary ?? post.ai_summary ?? null,
   content: post.content || '',
   readTime: post.readTime || post.read_time || '1 min',
   viewCount: post.viewCount ?? 0,

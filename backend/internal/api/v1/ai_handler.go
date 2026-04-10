@@ -3,17 +3,22 @@ package v1
 import (
 	"backend/internal/model/dto"
 	"backend/internal/service"
+	"errors"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 type AIHandler struct {
-	aiService service.AIService
+	aiService          service.AIService
+	postSummaryService service.PostSummaryService
 }
 
-func NewAIHandler(aiService service.AIService) *AIHandler {
-	return &AIHandler{aiService: aiService}
+func NewAIHandler(aiService service.AIService, postSummaryService service.PostSummaryService) *AIHandler {
+	return &AIHandler{
+		aiService:          aiService,
+		postSummaryService: postSummaryService,
+	}
 }
 
 // GenerateExcerpt godoc
@@ -171,6 +176,41 @@ func (h *AIHandler) SummarizePost(c *gin.Context) {
 
 	result, err := h.aiService.SummarizePost(c.Request.Context(), req.Title, req.Content)
 	if err != nil {
+		c.JSON(http.StatusInternalServerError, dto.Error(500, "AI summarization failed: "+err.Error()))
+		return
+	}
+
+	c.JSON(http.StatusOK, dto.Success(dto.AIGenerationResponse{
+		Result: result,
+	}))
+}
+
+func (h *AIHandler) GeneratePostSummary(c *gin.Context) {
+	if h.postSummaryService == nil {
+		c.JSON(http.StatusServiceUnavailable, dto.Error(503, "AI summary service is unavailable"))
+		return
+	}
+
+	var req dto.GeneratePostSummaryRequest
+	if c.Request.ContentLength > 0 {
+		if err := c.ShouldBindJSON(&req); err != nil {
+			c.JSON(http.StatusBadRequest, dto.Error(400, err.Error()))
+			return
+		}
+	}
+
+	result, err := h.postSummaryService.GetOrGenerateSummary(
+		c.Request.Context(),
+		c.Param("id"),
+		req.Force,
+		c.ClientIP(),
+	)
+	if err != nil {
+		var rateLimitErr *service.SummaryRateLimitError
+		if errors.As(err, &rateLimitErr) {
+			c.JSON(http.StatusTooManyRequests, dto.Error(429, "Summary regeneration limit reached. Please try again later."))
+			return
+		}
 		c.JSON(http.StatusInternalServerError, dto.Error(500, "AI summarization failed: "+err.Error()))
 		return
 	}

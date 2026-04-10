@@ -173,7 +173,7 @@ export const PostView: React.FC<PostViewProps> = ({ post }) => {
 
       {/* AI Summary - 标题下方自动生成 */}
       <div className="animate-fade-in" style={{ animationDelay: '200ms' }}>
-        <AISummary content={post.content} />
+        <AISummary postId={post.id} initialSummary={post.aiSummary} />
       </div>
 
       <div className="font-medium text-text leading-loose mb-16 animate-fade-in" style={{ animationDelay: '300ms' }}>

@@ -43,6 +43,7 @@ type AIService interface {
 	Chat(ctx context.Context, message string) (string, error)
 	ChatStream(ctx context.Context, message string, onChunk func(chunk string)) error
 	SummarizePost(ctx context.Context, title, content string) (string, error)
+	Provider() string
 }
 
 type aiService struct {
@@ -272,4 +273,8 @@ func (s *aiService) generate(ctx context.Context, prompt string) (string, error)
 		return "", fmt.Errorf("AI generation failed: %w", err)
 	}
 	return response, nil
+}
+
+func (s *aiService) Provider() string {
+	return s.provider
 }

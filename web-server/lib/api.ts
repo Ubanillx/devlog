@@ -39,15 +39,22 @@ export const clearToken = () => {
 
 // ==================== AI 服务 ====================
 
-export const summarizePost = async (content: string): Promise<string> => {
-  try {
-    const prompt = `请用3个简洁的要点总结以下技术博客文章，聚焦关键信息：\n\n${content}`;
-    const res = await AiService.postAiChat({ message: prompt });
-    return res.data?.result || "无法生成摘要。";
-  } catch (error) {
-    console.error("AI API Error:", error);
-    throw new Error("内容摘要生成失败。");
+export const generatePostSummary = async (postId: string, force = false): Promise<string> => {
+  const res = await fetch(`${API_BASE_URL}/posts/${postId}/summary`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ force }),
+  });
+
+  const payload = await res.json().catch(() => null);
+  if (!res.ok) {
+    const message = payload?.message || payload?.error || '内容摘要生成失败。';
+    throw new Error(message);
   }
+
+  return payload?.data?.result || '无法生成摘要。';
 };
 
 // ==================== SSE 流式请求 ====================
