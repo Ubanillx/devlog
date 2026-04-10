@@ -95,7 +95,7 @@ export function HomePostList({ initialPosts, pageSize = 10 }: HomePostListProps)
           posts.map((post, index) => (
             <div
               key={post.id}
-              className="animate-fade-in slide-up-from-bottom-4 duration-500"
+              className="animate-slide-up"
               style={{ animationDelay: `${(index % 10) * 80}ms`, animationFillMode: 'both' }}
             >
               <PostCard post={post} />
