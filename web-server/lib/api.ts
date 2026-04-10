@@ -6,7 +6,11 @@ import { OpenAPI, AiService } from '../api-client';
 import { fetchEventSource } from '@microsoft/fetch-event-source';
 
 // 配置 API 基础 URL
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1';
+const isServer = typeof window === 'undefined';
+const API_BASE_URL = isServer 
+  ? process.env.NEXT_INTERNAL_API_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://backend:8080/api/v1' 
+  : process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080/api/v1';
+
 OpenAPI.BASE = API_BASE_URL;
 
 // Token 管理

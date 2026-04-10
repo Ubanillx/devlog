@@ -1,4 +1,5 @@
 import { BlogPost } from './types';
+import './api'; // Ensure OpenAPI.BASE is initialized
 import { PostsService } from '../api-client';
 
 // 将后端响应映射为前端 BlogPost 类型

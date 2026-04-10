@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next';
 
-const API_URL = process.env.NEXT_PUBLIC_API_BASE_URL?.replace('/api/v1', '') || 'http://localhost:8080';
+const INTERNAL_API_BASE = process.env.NEXT_INTERNAL_API_URL || 'http://backend:8080/api/v1';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://blog.ubanillx.com';
+
+export const dynamic = 'force-dynamic';
 
 interface ApiPost {
   id: string;
@@ -12,12 +14,35 @@ interface ApiPost {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let posts: ApiPost[] = [];
+
   try {
-    const res = await fetch(`${API_URL}/api/v1/posts?page_size=100`, {
-      next: { revalidate: 3600 },
-    });
-    const data = await res.json();
-    posts = data.data?.posts || [];
+    const pageSize = 100;
+    let page = 1;
+
+    while (true) {
+      const res = await fetch(`${INTERNAL_API_BASE}/posts?page=${page}&page_size=${pageSize}`, {
+        cache: 'no-store',
+      });
+
+      if (!res.ok) {
+        break;
+      }
+
+      const data = await res.json();
+      const pagePosts: ApiPost[] = data.data?.posts || [];
+
+      if (pagePosts.length === 0) {
+        break;
+      }
+
+      posts.push(...pagePosts);
+
+      if (pagePosts.length < pageSize) {
+        break;
+      }
+
+      page += 1;
+    }
   } catch {
     // If API is down, return basic sitemap
   }
