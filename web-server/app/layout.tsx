@@ -53,7 +53,7 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title={`${siteConfig.site.title} RSS`} href="/rss.xml" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
       </head>
-      <body className="min-h-screen flex flex-col text-text selection:bg-primary/30 selection:text-text-light transition-colors duration-300 relative z-10">
+      <body className="min-h-screen flex flex-col text-text selection:bg-primary/30 selection:text-textLight transition-colors duration-300 relative z-10">
         <ThemeInitializer />
         <BackgroundCanvas />
         <Navbar />
