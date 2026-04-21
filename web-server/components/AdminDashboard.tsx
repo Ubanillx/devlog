@@ -7,11 +7,14 @@ import { BlogPost, Comment } from '@/lib/types';
 import { CommentsService, AiService, UploadService, PostsService, AuthService } from '../api-client';
 import { getToken, setToken, clearToken } from '@/lib/api';
 import { siteConfig, SiteConfig, defaultConfig } from '@/lib/config';
+import { getPreferredClipboardText, insertTextAtSelection } from '@/lib/editorPaste';
 import { renderEditorMarkdownPreview } from '@/lib/markdown';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 
 const PAGE_SIZE = 10;
+const INLINE_EDITOR_ID = 'post-content-editor';
+const FULLSCREEN_EDITOR_ID = 'post-content-editor-fullscreen';
 
 export const AdminDashboard: React.FC = () => {
   const router = useRouter();
@@ -153,6 +156,75 @@ export const AdminDashboard: React.FC = () => {
       throw error;
     }
   };
+
+  useEffect(() => {
+    if (!isEditing) {
+      return;
+    }
+
+    const handleEditorPaste = async (event: ClipboardEvent) => {
+      const clipboard = event.clipboardData;
+      const textarea = event.currentTarget;
+
+      if (!clipboard || !(textarea instanceof HTMLTextAreaElement)) {
+        return;
+      }
+
+      const plainText = clipboard.getData('text/plain');
+      const htmlText = clipboard.getData('text/html');
+      const preferredText = getPreferredClipboardText(plainText, htmlText);
+      const imageFiles = Array.from(clipboard.items)
+        .filter((item) => item.kind === 'file' && item.type.startsWith('image/'))
+        .map((item) => item.getAsFile())
+        .filter((file): file is File => file !== null);
+
+      if (!preferredText && imageFiles.length === 0) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const selectionStart = textarea.selectionStart ?? 0;
+      const selectionEnd = textarea.selectionEnd ?? selectionStart;
+
+      const applyInsertedText = (insertedText: string) => {
+        setContent((prev) => insertTextAtSelection(prev, insertedText, selectionStart, selectionEnd));
+
+        requestAnimationFrame(() => {
+          const cursor = selectionStart + insertedText.length;
+          textarea.focus();
+          textarea.selectionStart = cursor;
+          textarea.selectionEnd = cursor;
+        });
+      };
+
+      if (preferredText) {
+        applyInsertedText(preferredText);
+        return;
+      }
+
+      try {
+        const urls = await Promise.all(imageFiles.map((file) => handleImageUpload(file)));
+        const markdown = urls.map((url) => `![](${url})`).join('\n');
+        applyInsertedText(markdown);
+      } catch (error) {
+        console.error('Paste image upload failed:', error);
+        alert('Image upload failed');
+      }
+    };
+
+    const textareaIds = [`${INLINE_EDITOR_ID}_md`, `${FULLSCREEN_EDITOR_ID}_md`];
+    const textareas = textareaIds
+      .map((id) => document.getElementById(id))
+      .filter((node): node is HTMLTextAreaElement => node instanceof HTMLTextAreaElement);
+
+    textareas.forEach((textarea) => textarea.addEventListener('paste', handleEditorPaste));
+
+    return () => {
+      textareas.forEach((textarea) => textarea.removeEventListener('paste', handleEditorPaste));
+    };
+  }, [isEditing, isEditorFullscreen]);
 
   const handleTogglePublish = async (post: BlogPost) => {
     try {
@@ -534,6 +606,7 @@ export const AdminDashboard: React.FC = () => {
                                </button>
                              </div>
                              <MdEditor
+                               id={INLINE_EDITOR_ID}
                                value={content}
                                style={{ height: '400px' }}
                                renderHTML={renderEditorMarkdownPreview}
@@ -542,7 +615,7 @@ export const AdminDashboard: React.FC = () => {
                                config={{
                                  view: { menu: true, md: true, html: true },
                                  canView: { menu: true, md: true, html: true, fullScreen: false, hideMenu: true },
-                                 allowPasteImage: true,
+                                 allowPasteImage: false,
                                  onImageUpload: handleImageUpload,
                                }}
                              />
@@ -578,6 +651,7 @@ export const AdminDashboard: React.FC = () => {
                                </div>
                              </div>
                              <MdEditor
+                               id={FULLSCREEN_EDITOR_ID}
                                value={content}
                                style={{ height: '100%', flex: 1 }}
                                renderHTML={renderEditorMarkdownPreview}
@@ -586,7 +660,7 @@ export const AdminDashboard: React.FC = () => {
                                config={{
                                  view: { menu: true, md: true, html: true },
                                  canView: { menu: true, md: true, html: true, fullScreen: false, hideMenu: true },
-                                 allowPasteImage: true,
+                                 allowPasteImage: false,
                                  onImageUpload: handleImageUpload,
                                }}
                              />
