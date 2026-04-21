@@ -7,16 +7,9 @@ import { BlogPost, Comment } from '@/lib/types';
 import { CommentsService, AiService, UploadService, PostsService, AuthService } from '../api-client';
 import { getToken, setToken, clearToken } from '@/lib/api';
 import { siteConfig, SiteConfig, defaultConfig } from '@/lib/config';
+import { renderEditorMarkdownPreview } from '@/lib/markdown';
 import MdEditor from 'react-markdown-editor-lite';
-import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css';
-
-// 初始化 markdown-it
-const mdParser = new MarkdownIt({
-  html: true,
-  linkify: true,
-  typographer: true,
-});
 
 const PAGE_SIZE = 10;
 
@@ -543,7 +536,7 @@ export const AdminDashboard: React.FC = () => {
                              <MdEditor
                                value={content}
                                style={{ height: '400px' }}
-                               renderHTML={(text) => mdParser.render(text)}
+                               renderHTML={renderEditorMarkdownPreview}
                                onChange={({ text }) => setContent(text)}
                                placeholder="# Hello World..."
                                config={{
@@ -587,7 +580,7 @@ export const AdminDashboard: React.FC = () => {
                              <MdEditor
                                value={content}
                                style={{ height: '100%', flex: 1 }}
-                               renderHTML={(text) => mdParser.render(text)}
+                               renderHTML={renderEditorMarkdownPreview}
                                onChange={({ text }) => setContent(text)}
                                placeholder="# Hello World..."
                                config={{
