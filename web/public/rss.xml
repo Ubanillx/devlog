@@ -5,7 +5,210 @@
     <link>https://blog.ubanillx.com</link>
     <description>Technical blog feed</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 17 Dec 2025 16:14:33 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 29 Apr 2026 06:54:56 GMT</lastBuildDate>
+    <item>
+      <title>剖析 OpenClaw 与 Hermes：Agent 如何通过统一网关层接入 IM 插件</title>
+      <link>https://blog.ubanillx.com/?post=cdc31ccf-7bc7-41d7-ba0e-5dc44001cb94</link>
+      <guid isPermaLink="false">cdc31ccf-7bc7-41d7-ba0e-5dc44001cb94</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <description>OpenClaw 和 Hermes 通过统一网关层将 Agent 与多种 IM 平台解耦，实现消息标准化、会话管理和权限控制，让 Agent 核心保持平台无关性。</description>
+      <category>Im Gateway</category>
+      <category>Agent Integration</category>
+      <category>Plugin Architecture</category>
+      <category>Message Standardization</category>
+      <category>Session Management</category>
+    </item>
+    <item>
+      <title> Camoufox 与 Wayfern：AI Agent 时代的反检测浏览器技术</title>
+      <link>https://blog.ubanillx.com/?post=0bde868c-f2f6-435d-9f26-bb0a62953d9f</link>
+      <guid isPermaLink="false">0bde868c-f2f6-435d-9f26-bb0a62953d9f</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Camoufox 和 Wayfern 作为新兴的反检测浏览器技术，通过模拟真实用户环境和提供大规模并发能力，为AI Agent和自动化测试提供了更稳定、合规的解决方案。</description>
+      <category>Playwright</category>
+      <category>Anti-Detect Browsers</category>
+      <category>Web Automation</category>
+      <category>Browser Fingerprinting</category>
+      <category>Ai Agent</category>
+    </item>
+    <item>
+      <title>Crawl4AI：一个更适合 AI 应用的网页抓取与内容提取工具</title>
+      <link>https://blog.ubanillx.com/?post=5b1aaa94-e369-4320-8fae-4423627afa03</link>
+      <guid isPermaLink="false">5b1aaa94-e369-4320-8fae-4423627afa03</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Crawl4AI 是一个专为 AI 应用设计的开源网页抓取与内容提取工具，能将网页转换成适合大模型消费的 Markdown 或结构化 JSON，支持动态页面处理、深度爬取和自适应爬取。</description>
+      <category>Web Scraping</category>
+      <category>Ai Applications</category>
+      <category>Markdown Generation</category>
+      <category>Content Extraction</category>
+      <category>Dynamic Web Pages</category>
+    </item>
+    <item>
+      <title>如何从网页中提取“有效内容”？几个 GitHub 开源项目对比</title>
+      <link>https://blog.ubanillx.com/?post=d053c543-3bf0-4182-a0cb-f5fccb4d3a5d</link>
+      <guid isPermaLink="false">d053c543-3bf0-4182-a0cb-f5fccb4d3a5d</guid>
+      <pubDate>Tue, 28 Apr 2026 00:00:00 GMT</pubDate>
+      <description>从网页中提取有效内容是AI应用和数据处理的关键步骤。本文对比了多个GitHub开源项目，帮助你选择最适合的工具来提取正文、元数据等有价值的信息。</description>
+      <category>Python</category>
+      <category>Node.js</category>
+      <category>Web Scraping</category>
+      <category>Ai Applications</category>
+      <category>Content Extraction</category>
+    </item>
+    <item>
+      <title>Mac 开源清理神器 Mole｜命令行一键释放几十 GB，比付费工具还好用</title>
+      <link>https://blog.ubanillx.com/?post=44928018-df75-4b72-a2b8-413a7fe470a9</link>
+      <guid isPermaLink="false">44928018-df75-4b72-a2b8-413a7fe470a9</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Mole是一款开源免费的macOS命令行清理工具，深度清理系统垃圾，一键释放数十GB空间，安全高效，适合预算有限的Mac用户。</description>
+      <category>MacOS</category>
+      <category>OpenSource</category>
+      <category>SystemCleanup</category>
+      <category>CommandLineTools</category>
+      <category>DiskSpace</category>
+    </item>
+    <item>
+      <title>带你以不同的视角了解NAT的类型</title>
+      <link>https://blog.ubanillx.com/?post=f8eb1341-c991-49c8-af14-fb696200d4c2</link>
+      <guid isPermaLink="false">f8eb1341-c991-49c8-af14-fb696200d4c2</guid>
+      <pubDate>Tue, 21 Apr 2026 00:00:00 GMT</pubDate>
+      <description>NAT（网络地址转换）通过在不同地址空间之间进行映射，解决IPv4地址不足、隐藏内网结构及实现访问控制等问题，常见分类包括静态NAT、动态NAT和PAT，各有其特点与应用场景。</description>
+      <category>Network Address Translation</category>
+      <category>NAT</category>
+      <category>IP Mapping</category>
+      <category>Port Address Translation</category>
+      <category>SNAT And DNAT</category>
+    </item>
+    <item>
+      <title>🎨 AI 审美急救包：让 Vibe Coding 更有“高级感”</title>
+      <link>https://blog.ubanillx.com/?post=0fbaa7f4-f2ae-43cb-8046-ae25786cd0d6</link>
+      <guid isPermaLink="false">0fbaa7f4-f2ae-43cb-8046-ae25786cd0d6</guid>
+      <pubDate>Fri, 17 Apr 2026 00:00:00 GMT</pubDate>
+      <description>提升AI生成代码的审美与质量，从色彩、布局到动效，六大工具包让项目更具高级感。</description>
+      <category>Ai Development</category>
+      <category>Web Design</category>
+      <category>Ui/ux</category>
+      <category>Frontend Engineering</category>
+      <category>Accessibility</category>
+    </item>
+    <item>
+      <title>Harness Engineering 简介</title>
+      <link>https://blog.ubanillx.com/?post=426fca47-4ad9-47d3-bdfa-a10f7de7691f</link>
+      <guid isPermaLink="false">426fca47-4ad9-47d3-bdfa-a10f7de7691f</guid>
+      <pubDate>Sat, 04 Apr 2026 00:00:00 GMT</pubDate>
+      <description>Harness Engineering integrates prompt and context engineering to ensure AI models perform tasks accurately and consistently in real-world scenarios, focusing on supervision, constraints, and correction.</description>
+      <category>Rag</category>
+      <category>Ai Engineering</category>
+      <category>Prompt Engineering</category>
+      <category>Context Engineering</category>
+      <category>Harness Engineering</category>
+    </item>
+    <item>
+      <title>怎么判断邮箱的有效性但不会打扰对方？</title>
+      <link>https://blog.ubanillx.com/?post=b52797c5-6593-4c50-971f-cfbefb96b6cc</link>
+      <guid isPermaLink="false">b52797c5-6593-4c50-971f-cfbefb96b6cc</guid>
+      <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+      <description>通过基础语法检查、域名和MX记录验证及SMTP握手测试，可以非侵入式地判断邮箱有效性，整个过程完全不会打扰到对方。</description>
+      <category>Email Validation</category>
+      <category>Non-Intrusive Methods</category>
+      <category>Smtp Verification</category>
+      <category>Dns Mx Record</category>
+    </item>
+    <item>
+      <title>如何反playwright被检测</title>
+      <link>https://blog.ubanillx.com/?post=0752870c-c89a-46a7-8de3-abaa86cd7db0</link>
+      <guid isPermaLink="false">0752870c-c89a-46a7-8de3-abaa86cd7db0</guid>
+      <pubDate>Thu, 26 Mar 2026 00:00:00 GMT</pubDate>
+      <description>想让网站无法发现你在使用Playwright进行爬取？最新方法包括使用Patchright和CDP连接真实Chrome，大幅降低检测率。</description>
+      <category>Automation</category>
+      <category>Anti Detection</category>
+      <category>Playwright</category>
+      <category>Python</category>
+      <category>Web Scraping</category>
+    </item>
+    <item>
+      <title>用 OpenClaw 运营一人公司：搭一套本地可控的 AI 营销系统</title>
+      <link>https://blog.ubanillx.com/?post=39ab48b4-dcbb-44ab-901f-af2efaf887e0</link>
+      <guid isPermaLink="false">39ab48b4-dcbb-44ab-901f-af2efaf887e0</guid>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 GMT</pubDate>
+      <description>一人公司用OpenClaw搭建本地可控的AI营销系统，实现从目标设定到内容产出、分发、数据复盘的闭环，提升执行密度与持续运营能力。</description>
+      <category>OpenClaw</category>
+      <category>AI Gateway</category>
+      <category>Marketing Automation</category>
+      <category>One Person Business</category>
+      <category>Telecom</category>
+    </item>
+    <item>
+      <title>核心原理拆解：音视频通话是如何工作的？（后端视角开发指南）</title>
+      <link>https://blog.ubanillx.com/?post=336fb574-4e62-4c0f-a45c-5782fde0ff8e</link>
+      <guid isPermaLink="false">336fb574-4e62-4c0f-a45c-5782fde0ff8e</guid>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 GMT</pubDate>
+      <description>音视频通话技术通过寻找对方、状态协商、建立传输通道和实时媒体传输实现，其底层机制涉及客户端、信令服务器、NAT穿透助手及媒体服务器四大角色协同工作。</description>
+      <category>Backend Development</category>
+      <category>WebRTC</category>
+      <category>Signaling</category>
+      <category>Real-Time Communication</category>
+      <category>Media Streaming</category>
+    </item>
+    <item>
+      <title>告别 LaTeX 的繁琐：Typst，为现代排版而生的利器</title>
+      <link>https://blog.ubanillx.com/?post=e213533f-66bd-47e9-851b-09f0ad5edddf</link>
+      <guid isPermaLink="false">e213533f-66bd-47e9-851b-09f0ad5edddf</guid>
+      <pubDate>Fri, 13 Feb 2026 00:00:00 GMT</pubDate>
+      <description>告别LaTeX的繁琐，Typst以简洁Markdown式的语法和强大功能，带来极速实时预览和现代编程思维，让排版更高效。</description>
+      <category>Typst</category>
+      <category>LaTeX</category>
+      <category>Markdown</category>
+      <category>Rust</category>
+      <category>Document Formatting</category>
+    </item>
+    <item>
+      <title>如何解决AI生成PPT的样式排版？</title>
+      <link>https://blog.ubanillx.com/?post=af25ee8b-80af-4b68-a00e-ba6b2b431d57</link>
+      <guid isPermaLink="false">af25ee8b-80af-4b68-a00e-ba6b2b431d57</guid>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 GMT</pubDate>
+      <description>将抽象美学转化为具体数学逻辑，构建智能排版引擎，实现无模板纯代码生成设计，通过结构化定义、布局计算和样式渲染三步走，让大语言模型助力自主设计。</description>
+      <category>Llm</category>
+      <category>Ppt Generation</category>
+      <category>Design Automation</category>
+      <category>Grid System</category>
+      <category>Python</category>
+    </item>
+    <item>
+      <title>AI如何制作PPT？本文带你了解几个方案</title>
+      <link>https://blog.ubanillx.com/?post=1e4303bb-203d-4bae-850a-0aa3d2045038</link>
+      <guid isPermaLink="false">1e4303bb-203d-4bae-850a-0aa3d2045038</guid>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 GMT</pubDate>
+      <description>开发一个完全自主设计的PPT生成智能体，关键在于让大语言模型理解内容和平面设计。通过结合多种技术方案，如基于`python-pptx`的代码化生成、Web技术渲染法等，可以实现从结构化生成到自主渲染的目标。</description>
+      <category>Web Development</category>
+      <category>Python-Pptx</category>
+      <category>Html/Css</category>
+      <category>Llm</category>
+      <category>Ppt Generation</category>
+    </item>
+    <item>
+      <title>基于 Java + Docker 构建高性能 Python 工作流节点</title>
+      <link>https://blog.ubanillx.com/?post=0585e962-da03-446e-bc42-e0f04c82de8d</link>
+      <guid isPermaLink="false">0585e962-da03-446e-bc42-e0f04c82de8d</guid>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 GMT</pubDate>
+      <description>本文深入探讨了如何利用Java和Docker构建一个既安全又高效的Python代码执行沙箱，解决资源隔离、数据交互及依赖管理等关键问题。</description>
+      <category>Docker</category>
+      <category>Web Development</category>
+      <category>Java</category>
+      <category>Security</category>
+      <category>Python</category>
+    </item>
+    <item>
+      <title>什么骨架屏？怎么做的？</title>
+      <link>https://blog.ubanillx.com/?post=5cde47cf-51f6-4c6e-b4c4-3befac5ba841</link>
+      <guid isPermaLink="false">5cde47cf-51f6-4c6e-b4c4-3befac5ba841</guid>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 GMT</pubDate>
+      <description>骨架屏通过简单的灰色块模拟内容轮廓，有纯CSS、UI组件库和自动化生成三种实现方式，适用于不同场景。</description>
+      <category>React</category>
+      <category>Web Development</category>
+      <category>CSS</category>
+      <category>Vue</category>
+      <category>User Experience</category>
+    </item>
     <item>
       <title>这些设计模式你真的理解了吗？--常用的设计模式讲解</title>
       <link>https://blog.ubanillx.com/?post=c5c09d6e-df56-44ba-8795-77d5fd2c79f3</link>
@@ -27,8 +230,8 @@
       <category>Spring Boot</category>
       <category>Flutter</category>
       <category>Payment Gateway</category>
-      <category>Security</category>
       <category>Webhook</category>
+      <category>Security</category>
     </item>
     <item>
       <title>[实战] 从零打造防盗链视频平台：Spring Boot + Flutter + 阿里云OSS 全链路安全方案</title>
@@ -62,8 +265,8 @@
       <description>在DDD中，领域层与基础层的依赖关系是核心难点。通过依赖倒置原则，保持领域层纯净，提高代码可测试性和技术可替换性。</description>
       <category>Architecture</category>
       <category>Domain Driven Design</category>
-      <category>Java</category>
       <category>Spring Boot</category>
+      <category>Java</category>
       <category>Dependency Inversion Principle</category>
     </item>
     <item>
@@ -132,11 +335,11 @@
       <guid isPermaLink="false">59a675ff-fdc2-412d-a4e2-76df2c92aef1</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>MybatisPlus 在简化开发和提高效率方面表现出色，本文将带你从环境搭建到复杂查询的实现，全面掌握这一强大的工具。</description>
-      <category>Java</category>
       <category>Spring Boot</category>
       <category>MybatisPlus</category>
       <category>Data Persistence</category>
       <category>Crud Operations</category>
+      <category>Java</category>
     </item>
     <item>
       <title>什么是索引？为什么需要它？</title>
@@ -205,10 +408,10 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>通过Dockerfile自动化构建轻量级、可移植的容器化应用环境，确保应用在不同环境中的一致性运行。掌握Dockerfile编写技巧和最佳实践，可以显著提升部署效率和资源利用率。</description>
       <category>Docker</category>
-      <category>Python</category>
       <category>Java</category>
       <category>Containerization</category>
       <category>Frontend Development</category>
+      <category>Python</category>
     </item>
     <item>
       <title>Lua脚本从入门到精通：超详细语法与实战指南（附案例解析）</title>
@@ -216,8 +419,8 @@
       <guid isPermaLink="false">976880ea-56fb-4de1-a254-9f844622c6c5</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Lua语言以其轻量级设计、独特数据结构和高效协程模型，成为游戏开发与实时数据处理的理想选择。掌握其核心特性和高级用法，可大幅提升性能与开发效率。</description>
-      <category>Web Development</category>
       <category>Performance Optimization</category>
+      <category>Web Development</category>
       <category>Lua</category>
       <category>Programming</category>
       <category>Game Development</category>
@@ -299,10 +502,10 @@
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>本文对比了Python Web开发中三大框架：Flask、Django和FastAPI，分析了各自的特点与适用场景，帮助开发者根据项目需求做出合适选择。</description>
       <category>Web Development</category>
-      <category>Python</category>
       <category>Flask</category>
       <category>FastAPI</category>
       <category>Django</category>
+      <category>Python</category>
     </item>
     <item>
       <title>常见设计模式详解——新手入门指南</title>
@@ -443,11 +646,11 @@
       <guid isPermaLink="false">f0dbb5f8-0bb5-4527-8d47-ee0a2bb00405</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Anaconda与Miniconda：前者是数据科学新手的“一站式工具箱”，后者则是轻量级环境部署的理想选择，两者在灵活性、安装速度和磁盘占用上各有千秋。</description>
-      <category>Python</category>
       <category>Anaconda</category>
       <category>Miniconda</category>
       <category>Data Science</category>
       <category>Environment Management</category>
+      <category>Python</category>
     </item>
     <item>
       <title>Anaconda 虚拟环境：数据科学的环境隔离神器</title>
@@ -455,11 +658,11 @@
       <guid isPermaLink="false">6f4832ee-cb87-499f-a23f-bf3e2ea185e5</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Anaconda 是一款专为数据科学和机器学习设计的跨平台环境管理工具，通过虚拟环境技术解决多项目版本冲突问题，大幅提升开发效率与团队协作能力。</description>
-      <category>Python</category>
       <category>Conda</category>
       <category>Data Science</category>
       <category>Environment Management</category>
       <category>Machine Learning</category>
+      <category>Python</category>
     </item>
     <item>
       <title>AB Download Manager：2025 年开源下载神器，IDM 免费替代方案</title>
@@ -491,8 +694,8 @@
       <guid isPermaLink="false">88d6ce15-3ae6-47dc-baf3-0f4bf001395a</guid>
       <pubDate>Fri, 28 Nov 2025 00:00:00 GMT</pubDate>
       <description>Kotlin 通过简洁的语法和现代特性提升开发效率，减少样板代码并提供空安全支持，尤其适合追求高效和简洁的新项目。</description>
-      <category>Kotlin</category>
       <category>Backend Development</category>
+      <category>Kotlin</category>
       <category>Programming Languages</category>
       <category>Code Comparison</category>
       <category>Java</category>
@@ -545,8 +748,8 @@
       <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
       <description>通过部署一个企业级用户中心系统，本文介绍了如何利用OS Copilot这一智能助手简化Linux运维，适合初级程序员快速上手。</description>
       <category>Nginx</category>
-      <category>Docker</category>
       <category>React</category>
+      <category>Docker</category>
       <category>OS Copilot</category>
       <category>SpringBoot</category>
     </item>
@@ -603,10 +806,10 @@
       <pubDate>Thu, 27 Nov 2025 00:00:00 GMT</pubDate>
       <description>自动脚本实现校园网自助认证，确保网络连接稳定，适用于实验室、图书馆及公共区域。</description>
       <category>Bash</category>
-      <category>Automation</category>
       <category>Ping</category>
       <category>Networking</category>
       <category>Curl</category>
+      <category>Automation</category>
     </item>
     <item>
       <title>AUST自助上网-Python</title>
@@ -616,8 +819,8 @@
       <description>自动检测网络连接并尝试重新认证，确保持续在线，适用于校园网环境。通过用户输入学号、密码及运营商信息实现自动化登录。</description>
       <category>Threading</category>
       <category>Web Requests</category>
-      <category>Python</category>
       <category>Networking</category>
+      <category>Python</category>
     </item>
   </channel>
 </rss>

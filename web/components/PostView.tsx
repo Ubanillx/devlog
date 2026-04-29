@@ -10,6 +10,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 import { PhotoSlider } from 'react-photo-view';
 import 'react-photo-view/dist/react-photo-view.css';
+import { setPostMeta, setHomeMeta } from '../services/seo';
 
 interface PostViewProps {
   postId: string;
@@ -25,9 +26,10 @@ const generateBaseId = (text: string): string => {
 };
 
 // 创建带有 ID 计数器的 markdown-it 实例
+// 在文章详情页中，markdown 内容里的 H1 会被降级为 H2，以避免与文章标题 H1 冲突
 const createMdParser = () => {
   const idCounts: Record<string, number> = {};
-  
+
   const parser = new MarkdownIt({
     html: true,
     linkify: true,
@@ -46,20 +48,28 @@ const createMdParser = () => {
     }
   });
 
-  // 为标题添加唯一 ID
+  // 为标题添加唯一 ID，并将 markdown 中的 h1 降级为 h2
   parser.renderer.rules.heading_open = (tokens, idx) => {
     const token = tokens[idx];
     const level = token.tag;
+    // 将 markdown 中的 h1 降级为 h2，h2 降级为 h3，以此类推（最低到 h6）
+    const headingLevel = level.match(/^h(\d)$/);
+    let effectiveLevel = level;
+    if (headingLevel) {
+      const num = parseInt(headingLevel[1], 10);
+      const bumped = num + 1;
+      effectiveLevel = bumped <= 6 ? `h${bumped}` : 'h6';
+    }
     const contentToken = tokens[idx + 1];
     const text = contentToken?.children?.map(t => t.content).join('') || '';
     const baseId = generateBaseId(text);
-    
+
     // 处理重复 ID
     const count = idCounts[baseId] || 0;
     const id = count === 0 ? baseId : `${baseId}-${count}`;
     idCounts[baseId] = count + 1;
-    
-    return `<${level} id="${id}">`;
+
+    return `<${effectiveLevel} id="${id}">`;
   };
 
   // Wrap tables in a container for horizontal scrolling
@@ -148,7 +158,7 @@ export const PostView: React.FC<PostViewProps> = ({ postId, onBack }) => {
       try {
         const res = await PostsService.getPosts1(postId);
         if (res.data) {
-          setPost({
+          const fetchedPost = {
             id: res.data.id || postId,
             title: res.data.title || '',
             date: res.data.date || res.data.publishedDate || new Date().toISOString().split('T')[0],
@@ -158,7 +168,10 @@ export const PostView: React.FC<PostViewProps> = ({ postId, onBack }) => {
             readTime: res.data.readTime || res.data.read_time || '1 min',
             viewCount: res.data.viewCount ?? 0,
             isPublished: res.data.isPublished ?? res.data.is_published ?? true,
-          });
+          };
+          setPost(fetchedPost);
+          // Update SEO meta for this post
+          setPostMeta(fetchedPost);
         } else {
           setError('Post not found');
         }
@@ -171,6 +184,8 @@ export const PostView: React.FC<PostViewProps> = ({ postId, onBack }) => {
     };
     fetchPost();
     window.scrollTo(0, 0);
+    // Reset SEO to home when component unmounts
+    return () => setHomeMeta();
   }, [postId]);
 
   // Loading state

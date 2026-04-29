@@ -12,6 +12,7 @@ import { BlogPost, ViewState } from './types';
 import { siteConfig } from './config';
 import { PostsService, AuthService } from './api-client';
 import { getToken, setToken, clearToken } from './services/api';
+import { setHomeMeta, setAboutMeta } from './services/seo';
 
 // 将后端响应映射为前端 BlogPost 类型
 const mapPostResponse = (post: any): BlogPost => ({
@@ -167,6 +168,7 @@ const App: React.FC = () => {
     setIsMobileMenuOpen(false);
     window.scrollTo(0, 0);
     window.history.pushState(null, '', '/');
+    setHomeMeta();
   };
 
   const navigateToAbout = (e: React.MouseEvent) => {
@@ -176,6 +178,7 @@ const App: React.FC = () => {
     setIsMobileMenuOpen(false);
     window.scrollTo(0, 0);
     window.history.pushState(null, '', '?view=about');
+    setAboutMeta();
   };
 
   const navigateToLogin = (e: React.MouseEvent) => {
@@ -195,12 +198,15 @@ const App: React.FC = () => {
       if (post) {
         setSelectedPostId(post);
         setViewState(ViewState.POST);
+        // PostView will handle its own SEO on fetch
       } else if (view === 'about') {
         setViewState(ViewState.ABOUT);
         setSelectedPostId(null);
+        setAboutMeta();
       } else {
         setViewState(ViewState.HOME);
         setSelectedPostId(null);
+        setHomeMeta();
       }
     };
     applyFromLocation();
