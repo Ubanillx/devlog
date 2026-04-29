@@ -17,6 +17,7 @@ export const TerminalHero: React.FC = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto mb-16 mt-8 perspective-1000">
+      <h1 className="sr-only">UbanillxのDevLog - 开发日志</h1>
       <div className="bg-bg border border-border rounded-lg shadow-2xl overflow-hidden transform transition-all hover:scale-[1.01] hover:shadow-primary/20">
         {/* Terminal Header */}
         <div className="bg-surface px-4 py-2 flex items-center justify-between border-b border-border">

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { siteConfig } from '@/lib/config';
+import { SITE_URL } from '@/lib/seo';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { ThemeInitializer } from '@/components/ThemeInitializer';
@@ -7,6 +8,7 @@ import { BackgroundCanvas } from '@/components/BackgroundCanvas';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${siteConfig.site.title} | 开发日志`,
     template: `%s | ${siteConfig.site.title}`,
@@ -15,12 +17,16 @@ export const metadata: Metadata = {
   keywords: siteConfig.site.keywords,
   authors: [{ name: siteConfig.author.name }],
   robots: 'index, follow',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     title: `${siteConfig.site.title} | 开发日志`,
     description: siteConfig.site.description,
     siteName: siteConfig.site.title,
     locale: 'zh_CN',
+    url: '/',
   },
   twitter: {
     card: 'summary',

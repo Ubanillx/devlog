@@ -25,6 +25,14 @@ const generateBaseId = (text: string): string => {
     .replace(/^-+|-+$/g, '');
 };
 
+const bumpHeadingTag = (tag: string): string => {
+  const match = tag.match(/^h([1-6])$/);
+  if (!match) return tag;
+
+  const nextLevel = Math.min(Number(match[1]) + 1, 6);
+  return `h${nextLevel}`;
+};
+
 // 创建带有 ID 计数器的 markdown-it 实例
 const createMdParser = () => {
   const idCounts: Record<string, number> = {};
@@ -47,10 +55,10 @@ const createMdParser = () => {
     }
   });
 
-  // 为标题添加唯一 ID
+  // 为标题添加唯一 ID，并将正文标题降级，避免和文章标题 H1 冲突
   parser.renderer.rules.heading_open = (tokens, idx) => {
     const token = tokens[idx];
-    const level = token.tag;
+    const level = bumpHeadingTag(token.tag);
     const contentToken = tokens[idx + 1];
     const text = contentToken?.children?.map(t => t.content).join('') || '';
     const baseId = generateBaseId(text);
@@ -61,6 +69,10 @@ const createMdParser = () => {
     idCounts[baseId] = count + 1;
 
     return `<${level} id="${id}">`;
+  };
+
+  parser.renderer.rules.heading_close = (tokens, idx) => {
+    return `</${bumpHeadingTag(tokens[idx].tag)}>`;
   };
 
   // Wrap tables in a container for horizontal scrolling
